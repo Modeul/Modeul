@@ -23,7 +23,6 @@ window.addEventListener("load", function(){
     // 3. 여러개의 이벤트 타입들을 쉽게 바인딩 할 수 있다.
     //  “onclick()으로 얻을 수 있는 장점이 물론 있겠지만 addEventListener()를 사용해서 얻는 장점에 비하면 너무 적을 것 같다.”
 
-
 	// 찜 기능
 	var heartList = document.getElementsByClassName('icon-heart');
 
@@ -37,5 +36,4 @@ window.addEventListener("load", function(){
     for (var i = 0; i < heartList.length; i++) {
         heartList[i].addEventListener("click", heartClick);
     }
-	
 });

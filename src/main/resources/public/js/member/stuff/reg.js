@@ -37,7 +37,6 @@ window.addEventListener("load", function(){
         resultElement.value = number;
     });
     
-
     // function count(type)  {
     //     // 결과를 표시할 element
     //     const resultElement = document.getElementById('result');
