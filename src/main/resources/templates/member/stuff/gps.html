@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 경로 매우 주의!!-->
+    <link href="../../css/reset.css" type="text/css" rel="stylesheet">
+    <link href="../../css/utils.css" type="text/css" rel="stylesheet">
+    <link href="../../css/style.css" type="text/css" rel="stylesheet">
+    <link href="../../css/button.css" type="text/css" rel="stylesheet">
+    <link href="../../css/component/member/stuff/component-gps.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../../js/member/stuff/gps.js"></script>
+    <script type="text/javascript"
+src="//dapi.kakao.com/v2/maps/sdk.js?appkey=76eb389721bfd60411ec4ff0173aeaa4"></script>
+
+</head>
+
+<body>
+    <section class="canvas-1">
+
+        <header class="d-fl">
+            <div>
+                <a href="./list.html" class="icon icon-back">뒤로가기</a>
+            </div>
+            <div class="hd-title-box">
+                <h1 class="hd-title">우리 동네 설정</h1>
+            </div>
+        </header>
+
+        <div class="search-box">
+            <form class="d-fl d-b-none search-form1">
+                <h1 class="icon search-dodbogi m-l-6px">돋보기</h1>
+                <input type="search" class="search-input m-l-6px" placeholder="(동,읍,면) + 아파트 or 마을로 검색">
+            </form>
+
+            <input type="button" class="icon icon-gps" onclick="startGeolocation()" />
+        </div>
+
+        <main>
+            <div id="map" class="m-t-72px"></div>
+            <div class="m-t-3">
+                <span>우리 동네를 설정하고 이웃 주민들과 물건을 함께 구매해봐요</span>
+            </div>
+        </main>
+
+    </section>
+</body>
+</html>
+
+
+<script>
+
+    var id;
+    var container = document.getElementById('map');
+    var options;
+    function startGeolocation() {
+        if (navigator.geolocation) {
+            id = navigator.geolocation.watchPosition(showGeolocation);
+        }
+    }
+    function showGeolocation(location) {
+        options = {
+            center: new kakao.maps.LatLng(location.coords.latitude, location.coords.longitude),
+            level: 3
+        };
+        var map = new kakao.maps.Map(container, options);
+        var markerPosition = new kakao.maps.LatLng(location.coords.latitude, location.coords.longitude);
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        marker.setMap(map);
+        stopGeolocation();
+    }
+    function stopGeolocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.clearWatch(id);
+        }
+    }
+
+</script>

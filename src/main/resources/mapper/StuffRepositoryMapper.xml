@@ -1,0 +1,84 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.modeul.web.repository.StuffRepository">
+	<resultMap type="StuffViewDTO" id="stuffViewResultMap">
+		<result property="numPeople" column="num_people" />
+		<result property="categoryId" column="category_id" />
+		<result property="categoryName" column="category_name" />
+	</resultMap>
+
+	<insert id="insert" parameterType="StuffDTO">
+		insert into stuff(title, place, num_people, url, deadline, price, content,
+		category_id)
+		values(#{title}, #{place}, ${numPeople}, #{url}, #{deadline}, #{price}, #{content}, ${categoryId})
+	</insert>
+	
+	<select id="findViewAll" resultMap="stuffViewResultMap">
+		select * from stuff_view_gyun;
+	</select>
+
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.modeul.web.repository.StuffRepository">
+<!-- mySQL에서 문자열은 ''로 묶여야 한다. 그래서 #{}으로 묶인다. -->
+  
+  <!-- resultMap이 필요한 이유는 Stuff 테이블에서 Java를 이용하면, categoryId으로 칼럼명이 쓰인다.
+  그 categoryId 칼럼은 한 번 더 Category 테이블로 건너가서 categoryName 칼럼을 이용하기 위해서는
+  resultMap을 사용하여 MySQL DB의 칼럼명으로 다시 매핑해줘야 한다. -->
+  <resultMap id="stuffResultMap" type="Stuff">
+  	<result property="numPeople" column="num_people"/>
+  	<result property="regDate" column="reg_date"/>
+  </resultMap> 
+  <resultMap id="stuffViewResultMap" type="StuffView">
+  	<result property="categoryId" column="category_id"/>
+  	<result property="categoryName" column="category_name"/>
+  	<result property="numPeople" column="num_people"/>
+  	<result property="memberId" column="member_id"/>
+  	<result property="regDate" column="reg_date"/>
+  </resultMap>
+
+<!--   <select id="findbyId" resultMap="stuffResultMap">
+  	select *
+  	from stuff
+  	where id = #{id}
+  </select> -->
+  
+
+  <!-- VIEW 이용할 때, on 조건 중 id 뭐로 연결할 건지 다시 생각!
+  VIEW 테이블 자체는 조건절이 없었다. -->
+  <!--- MariaDB의 SQL문에 $는 '' 없이 SQL문에 값이 그냥 들어가고 
+  #은 ''를 붙여서 SQL문에 값이 들어간다. --> 
+  <select id="findViewAll" resultMap="stuffViewResultMap">
+  	select *
+  	from stuff_view_jh
+  	<trim prefix="WHERE" prefixOverrides="AND | OR">
+  		<if test="query != null">
+  			title like '%${query}%'
+  		</if>
+  		<if test="categoryId != null">
+  			and category_id = #{categoryId}
+  		</if>
+  	</trim>
+	<if test="orderField != null and orderDir != null">
+		order by ${orderField} ${orderDir}		<!-- orderField랑 orderDir, limit, offset 값 필수라서 trim 안함 -->
+	</if>
+		
+	<if test="size != null and offset !=offset">
+		limit ${size} offset ${offset}
+	</if>
+  </select>
+  
+  <insert id="insert" parameterType="Stuff">
+    insert into stuff(title, place, num_people, price, url, content)
+    values(#{title},#{place},#{numPeople},#{price},#{url},#{content})
+  </insert>
+  
+>>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
+</mapper>
