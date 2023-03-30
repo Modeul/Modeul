@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.modeul.web.repository.StuffRepository">
+	<resultMap type="StuffViewDTO" id="stuffViewResultMap">
+		<result property="numPeople" column="num_people" />
+		<result property="categoryId" column="category_id" />
+		<result property="categoryName" column="category_name" />
+	</resultMap>
+
+	<insert id="insert" parameterType="StuffDTO">
+		insert into stuff(title, place, num_people, url, deadline, price, content,
+		category_id)
+		values(#{title}, #{place}, ${numPeople}, #{url}, #{deadline}, #{price}, #{content}, ${categoryId})
+	</insert>
+	
+	<select id="findViewAll" resultMap="stuffViewResultMap">
+		select * from stuff_view_gyun;
+	</select>
+
+</mapper>

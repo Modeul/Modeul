@@ -25,16 +25,16 @@ window.addEventListener("load", function(){
 
     // 인원수 조절 JS 
     // 현재 화면에 표시된 값
-    let number = resultElement.innerText;
+    let number = resultElement.value;
 
     btnMinus.addEventListener('click', () => {
         number = parseInt(number) - 1;
-        resultElement.innerText = number;
+        resultElement.value = number;
     });
 
     btnPlus.addEventListener('click', () => {
         number = parseInt(number) + 1;
-        resultElement.innerText = number;
+        resultElement.value = number;
     });
 
     // function count(type)  {
