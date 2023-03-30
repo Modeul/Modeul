@@ -21,6 +21,13 @@ public class DefaultStuffService implements StuffService {
 
 	@Override
 	public List<StuffViewDTO> getViewList() {
+		System.out.println(1);
 		return repository.findViewAll();
+	}
+
+	@Override
+	public List<StuffViewDTO> getViewList(Integer categoryId) {
+		System.out.println(2);
+		return repository.findViewAll(categoryId);
 	}
 }

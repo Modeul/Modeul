@@ -30,9 +30,9 @@ public class StuffController {
 	CategoryService categoryService;
 
 	@GetMapping("list")
-	public String list(Model model, @RequestParam(name ="c", required = false) String c) {
+	public String list(Model model, @RequestParam(name ="c", required = false) Integer categoryId) {
 		
-		List<StuffViewDTO> list = service.getViewList();
+		List<StuffViewDTO> list = service.getViewList(categoryId);
 		List<Category> categoryList = categoryService.getList();
 		
 		model.addAttribute("list", list);
@@ -56,21 +56,13 @@ public class StuffController {
 			@RequestParam(name = "d", required = false) LocalDateTime deadline,
 			@RequestParam(name = "pr", required = false) String price,
 			@RequestParam(name = "ct", required = false) String content,
-			@RequestParam(name = "c", required = false) long categoryId
+			@RequestParam(name = "c", required = false) int categoryId
 			
 			) throws IOException {
 		
 //		ImageVO imageVO = new ImageVO(file.getOriginalFilename());
 		
-		System.out.println(file);
-		System.out.println(file.getBytes());
-		System.out.println(file.getContentType());
-		System.out.println(file.getInputStream());
-		System.out.println(file.getName());
-		System.out.println(file.getOriginalFilename());
-		System.out.println(file.getResource());
-		System.out.println(file.getSize());
-		System.out.println(file.isEmpty());
+
 		StuffDTO stuffDTO = new StuffDTO(title, place, numPeople, url, deadline, price, content, categoryId);
 		System.out.println(stuffDTO);
 		

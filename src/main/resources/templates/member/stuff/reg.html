@@ -23,44 +23,10 @@
 	<!-- =================== reg1 ======================= -->
 	<section class="reg1-form">
 		<h1 class="d-none">reg1</h1>
-
-<<<<<<< HEAD
+		
 		<section class="canvas-1 d-fl fl-dir-col">
 			<!-- =================== reg1 : header ===================== -->
 			<header class="d-fl">
-=======
-        <section class="canvas-1 d-fl fl-dir-col">
-            <!-- =================== reg1 : header ===================== -->
-            <header class="d-fl">
-                
-                <div>
-                    <a href="./list.html" class="icon icon-back">뒤로가기</a>
-                </div>
-                
-                <div class="hd-title-box">
-                    <h1 class="hd-title">카테고리 설정</h1>
-                </div>
-            </header>
-    
-            <!-- =================== reg1 : main ===================== -->
-            <main>
-                <div class="reg1-main-content">
-                    <h1>지역 주민들과 어떤 물건을 같이 살까요?</h1>
-                </div>
-    
-                <div class="category-select">
-                    <ul class="select-box-list">
-                        <li><button class="select-box categ-eff" name="merchandise">일반상품</button></li>
-                        <li><button class="select-box categ-eff" name="supermarket">대형마트 대량 물품</button></li>
-                        <li><button class="select-box categ-eff" name="delivery_food">딜리버리 푸드</button></li>
-                    </ul>
-                    <button class="btn-next m-t-button">다음</button>
-                </div>
-            </main>
-    
-        </section>
-  </section>
->>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
 
 				<div>
 					<a href="list" class="icon icon-back">뒤로가기</a>
@@ -71,51 +37,12 @@
 				</div>
 			</header>
 
-<<<<<<< HEAD
 			<!-- =================== reg1 : main ===================== -->
 			<main>
 				<div class="reg1-main-content">
 					<h1>지역 주민들과 어떤 물건을 같이 살까요?</h1>
 				</div>
-=======
-            <h1 class="d-none">reg2</h1>
-            <!-- header에 id를 부여해줄 것 - id는 html 짠사람이 부여해주기 때문이다! 이거로 css 경로 부여! -->
-        
-            <!-- =================== reg2 : header ===================== -->
-            <header class="">
-                
-                <div class="reg2-back">
-                    <a class="icon icon-back">뒤로가기</a>
-                </div>
-                
-                <div class="hd-title-box">
-                    <h1 class="hd-title">글 등록하기</h1>
-                </div>
-            </header>
-    
-            <!-- =================== reg2 : main ===================== -->
-            <main class="d-fl-jf m-b">
-                
-                <!-- form method post로 수정하기! -->
-                <form action="reg" method="post" enctype="multipart/form-data">
-        
-                    <div>
-                        <input type="submit" class="reg2-post" value="올리기">
-                    </div>
-                    
-                    <div class="file-box">
-                        <!-- 파일업로드 버튼 만드는 법 -->
-                        <label for="file">
-                            <div class="btn-file">파일업로드</div>
-                            <div class="btn-uploaded-files">파일업로드된 파일들1</div>
-                            <div class="btn-uploaded-files">파일업로드된 파일들2</div>
-                        </label>
-    
-                        <input type="file" class="d-none" id="file" name="file" multiple>
-                    </div>
->>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
 
-<<<<<<< HEAD
 				<div class="category-select">
 					<ul class="select-box-list">
 						<li><button class="select-box categ-eff">일반상품</button></li>
@@ -125,18 +52,7 @@
 					<button class="btn-next m-t-button">다음</button>
 				</div>
 			</main>
-=======
-                    <!-- 기존 카테고리 -->
-                    <select class="category-box" name="category_list">
-                    	
-                    	<!-- 타임리프 each 이용!! --> 
-                        <option class="" value="merchandise" name="merchandise">일반상품</option>
-                        <option class="" value="supermarket" name="supermarket">대형마트 대량 물품</option>
-                        <option class="" value="delivery_food" name="delivery_food">딜리버리 푸드</option>
-                    </select>
->>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
 
-<<<<<<< HEAD
 		</section>
 	</section>
 
@@ -215,9 +131,7 @@
                     </div>
                     
                     
-                    <!— 인원수 조절 —>
                     <div class="select-box2 d-fl">
-                        <!— label 태그 for="people-count" 적으면 온클릭 오류 발생함. —>
                         <label for="" class="input-field-txt">인원</label> 
                             <div class="people-count-box">
                                 <input class="btn-minus" id="people-count"
@@ -247,7 +161,6 @@
                           resultElement.innerText = number;
                         }
                         </script> -->
-<<<<<<< HEAD
 
 					<div id="btn-date" class="select-box d-fl jf-sb">
 						<label for="datetime-local" class="input-field-txt">마감시간</label> <input
@@ -261,31 +174,6 @@
 							type="text" class="input-field" name="price" id="price">
 					</div>
 					<!-- required 속성: 해당 필드가 기재되었을 때만 submit 가능. -->
-=======
-                        
-                 <div id="btn-date" class="select-box d-fl jf-sb">
-                    <label for="datetime-local" class="input-field-txt">마감시간</label>
-                        <input
-                            class="date-pic"
-                            type="datetime-local"
-                            data-placeholder="날짜를 선택해주세요."
-                            required
-                            aria-required="true" 
-                            value={startDateValue}
-                            className={styles.selectDay}
-                            onChange={StartDateValueHandler}
-                            ></input>
-                    </div>
-
-                    <div class="select-box">
-                        <label for="price" class="input-field-txt">가격</label>
-                        <input type="text" class="input-field" name="price" id="price">
-                    </div>
-                    
-                    <!-- required 속성: 해당 필드가 기재되었을 때만 submit 가능. -->
-                    
-                    
->>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
 
 
 
@@ -341,28 +229,6 @@
                           }
                         });
                     </script> -->
-
-<<<<<<< HEAD
-=======
-        
-                           
-                    <div class="select-box">
-                        <label for="place" class="input-field-txt">장소</label>
-                        <input type="text" class="input-field" name="place" id="place">
-                    </div>
-    
-                    <div class="select-box">
-                        <label for="url" class="input-field-txt">링크</label>
-                        <input type="text" class="input-field" name="url" id="url">
-                    </div>
-    
-                    <div class="select-box select-content d-fl fl-dir-col">
-                        <label for="content" class="input-field-txt2">내용</label>
-                        <textarea class="input-field input-content" name="content" id="content" cols="30" rows="10"></textarea>
-                    </div>
-                </form>
-            </main>
->>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
 
 
 					<div class="select-box">

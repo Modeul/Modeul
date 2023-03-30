@@ -22,5 +22,5 @@ public class StuffDTO {
 	private LocalDateTime deadline;
 	private String price;
 	private String content;
-	private long categoryId;
+	private int categoryId;
 }
