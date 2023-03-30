@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-package com.modeul.web.entity;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class StuffView extends Stuff {
-	private String categoryName;
-}
-=======
 package com.modeul.web.entity;
 
 import groovy.transform.ToString;
@@ -35,4 +21,3 @@ public class StuffView extends Stuff {
 	// 카테고리 이름이 필요하네..
 	private String categoryName;
 }
->>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
