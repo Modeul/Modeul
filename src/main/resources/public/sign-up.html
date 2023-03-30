@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html 
-	xmlns=th="http://www.thymeleaf.org"
->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,9 +36,8 @@
       <!-- flex 시작 -->
       <div class="sign-up-container">
        
-		
-		<!-- action이 필요하다. signup으로 form을 제출하면 @PostMapping된 컨트롤러에서 찾는다.-->
-        <form action="signup" method="post">
+
+        <form action="login.html" method="post" >
 
           <div class="input-field-2">
             <label for="uid" class="uid-label">
@@ -59,7 +56,7 @@
           <div class="input-field-2 m-t-1">
             <label for="password-confirm" class="password-confirm-label">
               <span class="d-none">pw-confirm</span>
-            <input type="text" id="password-confirm" name="repassword" class="input-text-2" placeholder="비밀번호를 다시 입력해주세요.">
+            <input type="text" id="password-confirm" name="password" class="input-text-2" placeholder="비밀번호를 다시 입력해주세요.">
             </label>
           </div>
 
@@ -67,13 +64,6 @@
             <label for="name" class="name-label">
               <span class="d-none">name</span>
             <input type="text" id="name" name="name" class="input-text-2" placeholder="이름을 입력해주세요.">
-            </label>
-          </div>
-          
-          <div class="input-field-2 m-t-1">
-            <label for="name" class="name-label">
-              <span class="d-none">nickname</span>
-            <input type="text" id="nickname" name="nickname" class="input-text-2" placeholder="닉네임을 입력해주세요.">
             </label>
           </div>
   
@@ -88,7 +78,7 @@
            <div class="input-field-2 m-t-1">
             <label for="email" class="email-confirm-label">
               <span class="d-none">email-confirm</span>
-            <input type="text" id="email" name="reemail" class="input-text-2" placeholder="이메일 인증번호를 입력해주세요.">
+            <input type="text" id="email" name="email" class="input-text-2" placeholder="이메일 인증번호를 입력해주세요.">
             <input class="btn-auth" id="btn-auth"type="button" value="확인">
             </label>
            </div>

@@ -1,0 +1,394 @@
+@charset "UTF-8"; 
+/* ==== utils ============================ */
+
+/* - 수평 여백 : 25px(목록 글 보여주는 페이지), 30px(입력 폼 있는 페이지)
+- 마진 탑(가장 위부터 아이콘까지) : 14px
+- 왼쪽 마진(뒤로가기 있는 부분 페이지) : 15px / 위쪽 마진 : 14px 
+- 헤더 높이 : 140px(선균님 페이지), 나머지(제목이 노출되는 페이지) 75px */
+  
+/* ---- padding ---------------------- */
+.p-1{
+    padding: 5px; /* !important; */
+}
+
+.p-2{
+    padding: 10px;
+}
+
+.p-t-1{
+    padding-top: 10px;
+}
+
+.p-t-2{
+    padding-top: 14px;
+} 
+
+.p-t-3{
+    padding-top: 20px;
+} 
+
+.p-l-1{
+    padding-left: 10px;
+}
+
+.p-l-2{
+    padding-left: 20px;
+}
+
+/* 수평 여백 */
+.p-lr-1{
+    padding: 0 25px; 
+}
+
+.p-lr-2{
+    padding: 0 30px; 
+}
+
+/* ---- margin ---------------------- */
+.m-1{
+    margin: 5px; /* !important; */
+}
+
+.m-2{
+    margin: 10px;
+}
+
+.m-t-1{
+    margin-top: 10px;
+}
+
+.m-t-2{
+    margin-top: 20px;
+} 
+
+.m-t-3{
+    margin-top: 30px;
+}
+
+.m-t-4{ 
+    margin-top: 40px;
+} 
+
+/* gps, index, login에서 사용 */
+.m-t-35px{
+    margin-top: 35px;
+}
+
+.m-t-62px{
+    margin-top: 62px;
+}
+
+
+.m-t-72px{
+    margin-top: 72px;
+}
+
+.m-t-77px{
+    margin-top: 77px;
+}
+
+
+.m-t-138px{
+    margin-top: 138px;
+}
+
+.m-t-218px{
+    margin-top: 218px;
+}
+
+.m-t-300px{
+    margin-top: 300px;
+}
+
+.m-t-p1{
+    margin-top: 1%;
+}
+
+.m-t-p5{
+    margin-top: 5%;
+}
+
+
+
+.m-l-1{
+    margin-left: 10px;
+}
+
+.m-l-2{
+    margin-left: 15px;
+}
+
+.m-l-3{
+    margin-left: 20px;
+}
+
+/* gps, list-search에서 사용 */
+.m-l-6px{
+    margin-left: 6px;
+}
+
+.m-l-13px{
+    margin-left: 13px;
+}
+
+.m-l-250px{
+    margin-left: 250px;
+}
+
+/* 관리자페이지의 카테고리에서 사용 */
+
+.m-l-300px{
+    margin-left: 300px;
+}
+
+.m-l-450px{
+    margin-left: 450px;
+}
+
+.m-l-600px{
+    margin-left: 600px;
+}
+
+.m-l-p1{
+    margin-left: 1%;
+}
+
+.m-l-p5{
+    margin-left: 5%;
+}
+
+/* ========= 관리자 페이지 목록 중 검색창 설정 ======== */
+
+
+.m-r-30px{
+    margin-right: 30px;
+}
+
+.m-r-120px{
+    margin-right: 120px;
+}
+
+.m-r-130px{
+    margin-right: 130px;
+}
+
+.m-r-144px{
+    margin-right: 144px;
+}
+
+.m-r-255px{
+    margin-right: 255px;
+}
+
+.m-r-300px{
+    margin-right: 300px;
+}
+
+
+.m-r-600px{
+    margin-right: 600px;
+}
+
+.m-r-800px{
+    margin-right: 800px;
+}
+
+.m-b-35px{
+    margin-bottom: 35px;
+}
+
+.m-notop{
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+/* 수평 여백 */
+.m-lr-1{
+    margin: 0 25px; 
+}
+
+.m-lr-2{
+    margin: 0 30px; 
+}
+
+
+/* ---- display ---------------------- */
+.d-none{
+    display: none;
+}
+
+.d-b-none{
+    border: none;
+}
+
+.d-in-block{
+    display: inline-block;
+}
+
+
+/* ---- flex ---------------------- */
+.d-fl{
+    display: flex;
+}
+
+.d-fl-jf{
+    display: flex;
+    justify-content: center;
+}
+
+.d-fl-al{
+    display: flex;
+    align-items: center;
+}
+
+/* --- 추가 --- */
+.fl-dir-col{
+    flex-direction: column;
+}
+
+.fl-dir-row{
+    flex-direction: row;
+}
+
+.jf-sb{
+    justify-content: space-between;
+}
+
+.jf-sa{
+    justify-content: space-around;
+}
+
+.al-sb{
+    align-content: space-between;
+}
+
+.jf-sa{
+    align-content: space-around;
+}
+
+/*  */
+.fl-1{
+    flex: 1;
+}
+/*  */
+.h-100{
+    height:80%;
+}
+
+.jf-fe{
+    justify-content: flex-end;
+}
+
+.jf-fe-self{
+    justify-self: flex-end;
+}
+
+.al-fs{
+    align-items: flex-start;
+}
+
+.al-fe{
+    align-items: flex-end;
+}
+
+.al-c{
+    align-items: center;
+}
+
+.jf-c{
+    justify-content: center;
+}
+
+/* ---- grid ---------------------- */
+.d-gr{
+    display: grid;
+}
+
+
+/* ---- position ---------------------- */
+.p-ab{
+    position: absolute;
+}
+
+.p-fx{
+    position: fixed;
+}
+
+.p-rel{
+    position: relative;
+}
+
+.pos-l-0{
+    left: 0px;
+}
+
+.pos-l-1{
+    left: 10px;
+}
+
+.pos-l-2{
+    left: 20px;
+}
+
+/* 새로 추가 근데 바로 style.css에 뭉쳐서 넣어주기 */
+
+.pos-b-0{
+    bottom: 0px;
+}
+
+.pos-b-1{
+    bottom: 10px;
+}
+
+.pos-b-2{
+    bottom: 20px;
+}
+
+.pos-t-0{
+    top: 0px;
+}
+
+.pos-t-1{
+    top: 10px;
+}
+
+.pos-t-2{
+    top: 20px;
+}
+
+/* === modal ============ */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modal.show {
+    display: block;
+  }
+  
+  .modal_body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  
+    width: 50%;
+    height: 60%;
+  
+    padding: 40px;
+  
+    text-align: center;
+  
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  
+    transform: translateX(-50%) translateY(-50%);
+  }

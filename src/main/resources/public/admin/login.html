@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/reset.css" type="text/css" rel="stylesheet"></link>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"></link>
+    <link href="../css/utils.css" type="text/css" rel="stylesheet"></link>
+    <link href="../css/button.css" type="text/css" rel="stylesheet"></link>
+    <link href="../css/component/component.css" type="text/css" rel="stylesheet"></link>
+    <link href="../../css/component/admin/component-admin.css" type="text/css" rel="stylesheet"></link>
+    <link href="../css/component/admin/admin-login.css" type="text/css" rel="stylesheet"></link>
+
+</head>
+<body>
+    <section class="canvas-2 f-family">
+        
+        <header>
+            <div class="header-container">
+                <h1 class="logo-main logo-moduel m-t-138px">mo_deul</h1>
+            </div>
+        </header>
+
+        <aside class="admin-sidebar1">
+            <div class="iconbox-admin">
+                <a href="" class="icon-admin icon-menu2">메뉴</a>
+            </div>  
+            <!-- <div class="circle"></div> -->
+
+            <div class="sidebar-admin m-t-218px">
+                <div class="iconbox-admin">
+                    <a href="" class="icon-admin1 icon-home">홈</a>
+                </div>
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1 icon-membermanage">회원관리</a>
+                </div>
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1 icon-stuffmanage">게시글관리</a>
+                </div>
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1 icon-category">카테고리 관리</a>
+                </div>
+
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1  icon-analytics">통계</a>
+                </div>
+            </div>
+        </aside>
+
+        <aside class="admin-sidebar2 d-none">
+            <h1 class="d-none">사이드바</h1>
+            <div class="iconbox-admin">
+                <div>
+                    <a href="" class="icon-admin icon-menu2">메뉴</a>
+                </div>
+                <div>
+                    <h1 class="logo-admin">mo_deul</h1>
+                </div>  
+            </div>
+
+            <div class="m-t-218px">
+                <div class="iconbox-admin" >
+                    <a href="" class="icon-admin1 icon-home">홈</a>
+                    <h1 class="label-admin">홈</h1>
+                </div>
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1 icon-membermanage">회원 관리</a>
+                    <h1 class="label-admin">회원 관리</h1>
+                </div>
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1 icon-stuffmanage">게시글 관리</a>
+                    <h1 class="label-admin">게시글 관리</h1>
+                </div>
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1 icon-category">카테고리 관리</a>
+                    <h1 class="label-admin">카테고리 관리</h1>
+                </div>
+                <div class="iconbox-admin m-t-35px">
+                    <a href="" class="icon-admin1 icon-analytics">통계</a>
+                    <h1 class="label-admin">통계</h1>
+                </div>
+            </div>
+        </aside>
+
+
+        <main>
+            <div class="input-container">
+                
+                <form action="./analytics/list.html" method="get">
+
+                    <div class="input-field-1">
+                        <label for="uid" class="uid-label">
+                            <span class="d-none">uid</span>
+                            <input type="text" id="uid" name="uid" 
+                                class="input-text" placeholder=" 아이디">
+                        </label>
+                    </div>
+                    <div class="input-field-1 m-t-1">
+                        <label for="password" class="password-label">
+                            <span class="d-none">uid</span>
+                            <input type="text" id="password" name="password" 
+                                class="input-text" placeholder=" 비밀번호">
+                        </label>
+                    </div>
+                    <div>
+                        <input class="btn-2" type="submit" value="관리자 로그인">
+                    </div>
+                </form>
+
+            </div>
+
+        </main>
+
+    </section>
+    
+</body>
+
+<script>
+    const asideBar1 = document.querySelector('.admin-sidebar1');
+    const asideBar2 = document.querySelector('.admin-sidebar2');
+    const btnAside = document.querySelector('.icon-menu2');
+
+    btnAside.addEventListener('click', (e) => {
+        
+        e.preventDefault();
+        asideBar1.classList.toggle('d-none');
+        asideBar2.classList.toggle('d-none');
+        
+    });
+
+</script>
+
+</html>

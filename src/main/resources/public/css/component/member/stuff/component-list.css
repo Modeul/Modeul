@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+.header-jc {
+  justify-content: space-between;
+}
+
+.header-categ-box {
+  padding-bottom: 13px;
+}
+
+.list-cl {
+  margin-top: 4px;
+}
+
+.li-header-categ {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.li-gr {
+  /* grid-template-columns: repeat(6, minmax(60px, auto)); */
+  grid-template-rows: repeat(3, minmax(24px, auto));
+  grid-row-gap: 1%;
+  grid-column-gap: 2%;
+  align-items: center;
+  grid-template-areas:
+    "pic ct ct . . ht"
+    "pic subj subj subj subj ht"
+    "pic mem dt dt dt ht";
+}
+
+.li-categ {
+  grid-area: ct;
+}
+
+.li-pic {
+  grid-area: pic;
+  grid-area: pic;
+  background-image: url(../../../../images/member/stuff/chick.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  width: 54px;
+  height: 54px;
+
+  display: inline-block;
+  overflow: hidden;
+  text-indent: -999px;
+  justify-self: center;
+  align-self: center;
+}
+
+.li-header-categ {
+  margin: auto;
+  margin-left: 0px;
+}
+
+.li-subj {
+  grid-area: subj;
+  font-size: 0.8125rem;
+}
+
+.li-member {
+  grid-area: mem;
+  font-size: 0.75rem;
+}
+
+.li-date {
+  grid-area: dt;
+  font-size: 0.75rem;
+}
+
+.li-heart {
+  justify-self: center;
+  align-self: center;
+  grid-area: ht;
+  width: 14px;
+  height: 14px;
+  background-size: auto;
+}
+
+/* 햄버거 버튼 만들기 */
+input[id="menuicon"] {
+  display: none;
+}
+input[id="menuicon"] + label {
+  top: 19%;
+  margin-left: 15%;
+  display: block;
+  width: 21px;
+  height: 14px;
+  position: relative; /* absolute의 기준점을위해 */
+  cursor: pointer;
+  z-index: 2;
+}
+input[id="menuicon"] + label span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 11%;
+  border-radius: 15px;
+  background: black;
+  transition: all 0.35s;
+}
+input[id="menuicon"] + label span:nth-child(1) {
+  top: 0;
+}
+input[id="menuicon"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+input[id="menuicon"] + label span:nth-child(3) {
+  bottom: 0;
+}
+input[id="menuicon"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  background: #3088b3;
+}
+input[id="menuicon"]:checked + label span:nth-child(2) {
+  opacity: 0;
+  background: #3088b3;
+}
+input[id="menuicon"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+  background: #3088b3;
+}
+
+/* -----사이드바--- */
+div[class="sidebar"] {
+  width: 25%;
+  height: 100%;
+  background: #bcdded;
+  position: fixed;
+  top: 0;
+  right: -25%;
+  z-index: 1;
+  transition: all 0.35s;
+  opacity: 0.9;
+  text-indent: 0;
+}
+input[id="menuicon"]:checked + label + div {
+  right: 0;
+}
+.welcome {
+  margin-top: 100px;
+  margin-left: 15%;
+  font-size: 1.099rem;
+}
+.side-menu {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.sidebar-padding {
+  margin-top: 35%;
+  font-size: 1rem;
+  cursor: pointer;
+}
