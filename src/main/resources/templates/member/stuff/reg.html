@@ -81,7 +81,7 @@
 			<main class="d-fl-jf m-b">
 
 				<!-- form method post로 수정하기! -->
-				<form action="regg" method="post" enctype="multipart/form-data">
+				<form action="reg" method="post" enctype="multipart/form-data">
 
 					<div>
 						<input type="submit" class="reg2-post" value="올리기">
@@ -89,41 +89,18 @@
 
 					<div class="file-box">
 						<!-- 파일업로드 버튼 만드는 법 -->
+						<input type="file" class="btn-file" id="file" name="fileList" multiple>
 						<div class="btn-uploaded-files">파일업로드된 파일들1</div>
 						<div class="btn-uploaded-files">파일업로드된 파일들2</div>
-						<input type="file" class="btn-file" id="file" name="f" multiple>
 					</div>
 
 					<!-- 기존 카테고리 -->
-					<select class="category-box" name="c">
+					<select class="category-box" name="categoryId">
 						<option class="" value="1">일반상품</option>
 						<option class="" value="3">대형마트 대량 물품</option>
 						<option class="" value="2">딜리버리 푸드</option>
 					</select>
 
-					<!-- 가로 스크롤 수정하기 -->
-					<div class="select-box">
-						<label for="title" class="input-field-txt">제목</label> <input
-							type="text" class="input-field" id="title" name="title">
-					</div>
-
-
-					<!-- 인원수 조절 -->
-					<div class="select-box2 d-fl">
-						<!-- label 태그 for="people-count" 적으면 온클릭 오류 발생함. -->
-						<label for="" class="input-field-txt">인원</label>
-						<div class="people-count-box">
-							<input class="btn-minus" id="people-count" type="button"
-								onclick='count("minus")' value=""> <input type="text"
-								class="people-count-num" name="np" id="result" value=2>
-
-							<input class="btn-plus" id="people-count" type="button"
-								onclick='count("plus")' value="">
-						</div>
-					</div>
-					<!-- 인원수 조절 JS -->
-					<!-- <script>
-=======
                     <!-- 가로 스크롤 수정하기 -->
                     <div class="select-box">
                         <label for="title" class="input-field-txt">제목</label>
@@ -167,7 +144,7 @@
 							class="date-pic" type="datetime-local"
 							data-placeholder="날짜를 선택해주세요." aria-required="true"
 							value={startDateValue} className={styles.selectDay}
-							onChange={StartDateValueHandler} name="d"></input>
+							onChange={StartDateValueHandler} name="deadline"></input>
 					</div>
 					<div class="select-box">
 						<label for="price" class="input-field-txt">가격</label> <input
@@ -233,17 +210,17 @@
 
 					<div class="select-box">
 						<label for="place" class="input-field-txt">장소</label> <input
-							type="text" class="input-field" id="place" name="p">
+							type="text" class="input-field" id="place" name="place">
 					</div>
 
 					<div class="select-box">
 						<label for="url" class="input-field-txt">링크</label> <input
-							type="text" class="input-field" id="url" name="u">
+							type="text" class="input-field" id="url" name="url">
 					</div>
 
 					<div class="select-box select-content d-fl fl-dir-col">
 						<label for="content" class="input-field-txt2">내용</label>
-						<textarea class="input-field input-content" name="ct" id="content"
+						<textarea class="input-field input-content" name="content" id="content"
 							cols="30" rows="10"></textarea>
 					</div>
 				</form>

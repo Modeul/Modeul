@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.modeul.web.entity.Category;
 import com.modeul.web.entity.StuffDTO;
+import com.modeul.web.entity.StuffVO;
 import com.modeul.web.entity.StuffViewDTO;
 import com.modeul.web.service.CategoryService;
 import com.modeul.web.service.StuffService;
@@ -22,22 +24,22 @@ import com.modeul.web.service.StuffService;
 @Controller
 @RequestMapping("member/stuff")
 public class StuffController {
-	
+
 	@Autowired
 	StuffService service;
-	
+
 	@Autowired
 	CategoryService categoryService;
 
 	@GetMapping("list")
-	public String list(Model model, @RequestParam(name ="c", required = false) Integer categoryId) {
-		
-		List<StuffViewDTO> list = service.getViewList(categoryId);
+	public String list(Model model) {
+
+		List<StuffViewDTO> list = service.getViewList();
 		List<Category> categoryList = categoryService.getList();
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("categoryList", categoryList);
-		
+
 		return "member/stuff/list";
 	}
 
@@ -47,27 +49,15 @@ public class StuffController {
 	}
 
 	@PostMapping("reg")
-	public String regStuff(
-			@RequestParam(name = "f", required = false) MultipartFile file,
-			@RequestParam(name = "t", required = false) String title,
-			@RequestParam(name = "p", required = false) String place,
-			@RequestParam(name = "np", required = false) int numPeople,
-			@RequestParam(name = "u", required = false) String url,
-			@RequestParam(name = "d", required = false) LocalDateTime deadline,
-			@RequestParam(name = "pr", required = false) String price,
-			@RequestParam(name = "ct", required = false) String content,
-			@RequestParam(name = "c", required = false) int categoryId
-			
-			) throws IOException {
-		
-//		ImageVO imageVO = new ImageVO(file.getOriginalFilename());
-		
+	public String regStuff(StuffVO stuffVO) {
 
-		StuffDTO stuffDTO = new StuffDTO(title, place, numPeople, url, deadline, price, content, categoryId);
-		System.out.println(stuffDTO);
-		
-		service.regStuff(stuffDTO);
-		
+//		ImageVO imageVO = new ImageVO(file.getOriginalFilename());
+
+
+		System.out.println(stuffVO);
+
+		service.regStuff(stuffVO);
+
 		return "redirect:list";
 	}
 

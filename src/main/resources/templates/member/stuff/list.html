@@ -17,7 +17,7 @@
 
 	<section class="canvas p-rel b-rad-2">
 		<header class="d-fl-al header-jc">
-		
+
 			<select class="selectbox-set"
 				onchange="if(this.value) location.href=(this.value);">
 				<option value="">신수동</option>
@@ -65,7 +65,8 @@
 		<!-- 나중에 onclick 이벤트 하트 부분만 빼고 넣기 -->
 		<main>
 			<div th:each="s : ${list}"
-				>
+				th:if="${param.c}? ${#strings.equals(param.c, s.categoryId)} : true">
+
 				<div class="d-gr li-gr m-t-13px list-cl"
 					onclick="location.href='detail'">
 					<!-- 나중에 전체를 div로 묶어서 main으로 크게 묶기 -->

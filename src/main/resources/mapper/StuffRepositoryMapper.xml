@@ -9,16 +9,15 @@
 		<result property="categoryName" column="category_name" />
 	</resultMap>
 
-	<insert id="insert" parameterType="StuffDTO">
+	<insert id="insert" parameterType="StuffVO">
 		insert into stuff(title, place, num_people, url, deadline, price, content,
 		category_id)
 		values(#{title}, #{place}, ${numPeople}, #{url}, #{deadline}, #{price}, #{content}, ${categoryId})
+		
+		
 	</insert>
 	
 	<select id="findViewAll" resultMap="stuffViewResultMap">
 		select * from stuff_view_gyun
-		<if test="categoryId != null">
-  			where category_id = #{categoryId}
-  		</if>
 	</select>
 </mapper>
