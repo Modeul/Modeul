@@ -24,7 +24,9 @@ import com.modeul.web.service.ImageService;
 import com.modeul.web.service.StuffService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/member/stuff")
 public class StuffController {
@@ -40,8 +42,8 @@ public class StuffController {
 
 	@GetMapping("list")
 	public String list(
-			@RequestParam(name="q", required=false) String query, 
-			@RequestParam(name="c", required=false) Integer categoryId, 
+			@RequestParam(name="q", required=false) String query,
+			@RequestParam(name="c", required=false) Long categoryId, 
 			@RequestParam(name="p", defaultValue="1") int page, Model model) {
 		
 		List<StuffView> list = service.getViewAll(query, categoryId, page);
@@ -79,7 +81,7 @@ public class StuffController {
 	@GetMapping("listsearch")
 	public String listsearch(
 			@RequestParam(name="q", required=false) String query, 
-			@RequestParam(name="c", required=false) Integer categoryId, 
+			@RequestParam(name="c", required=false) Long categoryId, 
 			@RequestParam(name="p", defaultValue="1") int page, Model model) {
 		
 		List<StuffView> list = service.getViewAll(query, categoryId, page);
@@ -130,7 +132,7 @@ public class StuffController {
 			String urlPath = "/images/member/stuff/" + img.getOriginalFilename();
 			String realPath = request.getServletContext().getRealPath(urlPath);
 			
-			System.out.println(realPath);
+			System.out.printf("%s", realPath);
 			
 			// 물리 경로에 폴더가 없으면, 폴더도 생성
 			File savePath = new File(realPath);
@@ -140,7 +142,7 @@ public class StuffController {
 			
 			// 그 물리적 경로로 파일 저장하는 방법**
 			img.transferTo(new File(realPath));
-			System.out.println(realPath);
+			System.out.printf("%s", realPath);
 			
 			
 			// 그 이미지를 DB에 저장하기!!** 

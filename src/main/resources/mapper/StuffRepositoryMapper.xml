@@ -82,8 +82,8 @@
   </insert>
   
   <insert id="imageUpload" parameterType="Image">
-  	insert into image(name, path, stuff_id)
-  	values(#{name}, #{path}, #{stuffId})
+  	insert into image(name, stuff_id)
+  	values(#{name}, #{stuffId})
   </insert>
   
 </mapper>

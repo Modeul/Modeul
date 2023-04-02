@@ -16,17 +16,20 @@
         type="text/css"
         rel="stylesheet">
         
-   	<script type="text/javascript" src="../../js/member/stuff/list.js"></script>
+   	<script type="text/javascript" src="../../js/member/stuff/list.js" defer="defer"></script>
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	
 </head>
 
 <body>
     
-        <section class="canvas p-rel b-rad-2">
+        <section id="list-main-section" class="canvas p-rel b-rad-2">
             <header class="d-fl-al header-jc">
 
                 <select class="selectbox-set" onchange="if(this.value) location.href=(this.value);">
                     <option value="">신수동</option>
                     <option value="">신설동</option>
+                    <option value="" v-text="test"></option>
                     <option value="gps.html">GPS설정</option>
                 </select>
 
@@ -59,36 +62,43 @@
  			<nav>
               <form action="list" method="get" class="header-categ-box">
                	 <div> 
-               	 	<button class="header-categ">전체</button>
+               	 	<button class="header-categ" name="c">전체</button>
                	 </div>
                  	 
                  	 <!-- category를 a태그나 button 태그로 해도 되는데 button 태그가 맞는거 같다. -->
 		         <!-- button 태그에는 "formacton"이라는 속성이 있어서 form 태그로 묶어서 제출 버튼이 있는 경우, 
 		         기존 form action 보다 버튼의 formaction의 특성이 우선 순위로 action 동작한다.  -->
-		         <div th:each="c: ${categoryList}">
+	<!-- 	         <div th:each="c: ${categoryList}">
 		            <button class="header-categ" name="cselect" value="1" 
 		            th:name="c" th:value="${c.id}" th:text="${c.name}"
+		            >일반상품</button>
+		         </div> -->
+     		     <div v-for="c in categoryList">
+		            <button class="header-categ" name="c" value="1" 
+		            v-text="c.name"
 		            >일반상품</button>
 		         </div>
 		      </form>
 			</nav>
             
             <main>
-	            <div th:each="stuff: ${list}">
+	            <div v-for="stuff in list">
 	            <!-- a 태그로 변경!! -->
 	                <a class="d-gr li-gr m-t-13px list-cl"
-	                href="./detail.html" th:href="@{./detail(id=${stuff.id})}"
+	                href="./detail.html" @click.prevent="viewClickHandler({{stuff.id}})"
 	                >
+<!-- 	                 th:href="@{./detail(id=${stuff.id})}" -->
 	                    <!-- 나중에 전체를 div로 묶어서 main으로 크게 묶기 -->
 	                    <div class="li-pic b-rad-1">사진</div>
 	                    <div class="li-categ header-categ li-header-categ" 
-	                    th:text="${stuff.categoryName}">딜리버리 푸드</div>
+	                    v-text="stuff.categoryName">딜리버리 푸드</div>
 	                    <div class="li-heart icon icon-heart">
 	                        찬하트
 	                    </div>
-	                    <div class="li-subj" th:text="${stuff.title}">서강대 앞 교촌치킨 시켜드실 분</div>
-	                    <div class="li-member" th:text="|1 / ${stuff.numPeople}|">2/5</div>
-	                    <div class="li-date" th:text="${#temporals.format(stuff.deadline, 'M월 d일 HH시까지')}">2월 3일 금 18시까지</div>
+	                   <!--  **원웨이 방식의 데이터는 v-text를 이용한다!** -->
+	                    <div class="li-subj" v-text="stuff.title">서강대 앞 교촌치킨 시켜드실 분</div>
+	                    <div class="li-member" v-text="stuff.numPeople">2/5</div>
+	                    <div class="li-date" v-text="stuff.regDate">2월 3일 금 18시까지</div>
 	                </a>				
 	                <div>
 	                    <h1 class="icon icon-line">선 긋기</h1>

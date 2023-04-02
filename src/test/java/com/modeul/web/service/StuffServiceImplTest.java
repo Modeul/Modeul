@@ -63,7 +63,7 @@ class StuffServiceImplTest {
 	
 	//@Test
 	void testgetViewAll() {
-		List<StuffView> list = service.getViewAll("제",2,1);
+		List<StuffView> list = service.getViewAll("제",2L,1);
 		System.out.println(list);
 	}
 	

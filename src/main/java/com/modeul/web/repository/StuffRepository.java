@@ -16,7 +16,7 @@ public interface StuffRepository {
 	// 조회용으로 데이터를 뽑아 낼 때, 사용하며 
 	// 서비스 계층에서는 해당 All를 이용하여 업무상 여러 오버로드 메서스가 준비하여 사용하다.
 	List<StuffView> findViewAll(String query, 
-								Integer categoryId, 
+								Long categoryId, 
 								String orderField, 
 								String orderDir,
 								Integer size, 

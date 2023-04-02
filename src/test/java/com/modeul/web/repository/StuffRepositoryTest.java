@@ -59,7 +59,7 @@ class StuffRepositoryTest {
 	
 	//@Test
 	void testfindViewAll() {
-		List<StuffView> list= repository.findViewAll("제", 2, null, null, 10, 0);
+		List<StuffView> list= repository.findViewAll("제", 2L, null, null, 10, 0);
 		System.out.println(list);
 	}
 	
