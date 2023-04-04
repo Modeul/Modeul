@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.modeul.web.entity.ImageVO;
 import com.modeul.web.entity.StuffVO;
 import com.modeul.web.entity.StuffViewDTO;
 
@@ -12,5 +13,8 @@ public interface StuffRepository {
 	
 	int insert(StuffVO stuffVO);
 	
+	int insertImage(ImageVO imageVO);
+	
 	List<StuffViewDTO> findViewAll();
+
 }

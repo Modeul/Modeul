@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,11 +51,6 @@ public class StuffController {
 
 	@PostMapping("reg")
 	public String regStuff(StuffVO stuffVO) {
-
-//		ImageVO imageVO = new ImageVO(file.getOriginalFilename());
-
-
-		System.out.println(stuffVO);
 
 		service.regStuff(stuffVO);
 
