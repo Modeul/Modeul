@@ -74,8 +74,8 @@
 		            >일반상품</button>
 		         </div> -->
      		     <div v-for="c in categoryList">
-		            <button class="header-categ" name="c" value="1" 
-		            v-text="c.name"
+		            <button class="header-categ" name="c" 
+		            :value="c.id" v-text="c.name" @click.prevent="categoryClickHandler(c.id)"
 		            >일반상품</button>
 		         </div>
 		      </form>
@@ -84,9 +84,10 @@
             <main>
 	            <div v-for="stuff in list">
 	            <!-- a 태그로 변경!! -->
-	                <a class="d-gr li-gr m-t-13px list-cl"
-	                href="./detail.html" @click.prevent="viewClickHandler({{stuff.id}})"
+	                <div class="d-gr li-gr m-t-13px list-cl"
+	                href="./detail.html" :href="detail" @click.prevent="viewClickHandler(stuff.id)"
 	                >
+<!-- 	                @click.prevent="viewClickHandler({{stuff.id}})" -->
 <!-- 	                 th:href="@{./detail(id=${stuff.id})}" -->
 	                    <!-- 나중에 전체를 div로 묶어서 main으로 크게 묶기 -->
 	                    <div class="li-pic b-rad-1">사진</div>
@@ -99,7 +100,7 @@
 	                    <div class="li-subj" v-text="stuff.title">서강대 앞 교촌치킨 시켜드실 분</div>
 	                    <div class="li-member" v-text="stuff.numPeople">2/5</div>
 	                    <div class="li-date" v-text="stuff.regDate">2월 3일 금 18시까지</div>
-	                </a>				
+	                </div>				
 	                <div>
 	                    <h1 class="icon icon-line">선 긋기</h1>
 	                </div>

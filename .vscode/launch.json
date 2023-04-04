@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ModeulPrjApplication<ModeulPrj>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.modeul.web.ModeulPrjApplication",
+            "projectName": "ModeulPrj",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

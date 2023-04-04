@@ -101,66 +101,66 @@ public class StuffController {
 	}
 	
 	// deadline은 LocalDateTime의 타입으로 추가!!
-	@PostMapping("reg")
-	public String regStuff(
-			MultipartFile[] imgs, HttpServletRequest request,
-			@RequestParam(name="title") String title,
-			@RequestParam(name="place") String place,
-			@RequestParam(name="numPeople") String numPeople,
-			@RequestParam(name="deadline") LocalDateTime deadline,
-			@RequestParam(name="price") String price,
-			@RequestParam(name="url") String url,
-			@RequestParam(name="content") String content) throws IllegalStateException, IOException {
+	// @PostMapping("reg")
+	// public String regStuff(
+	// 		MultipartFile[] imgs, HttpServletRequest request,
+	// 		@RequestParam(name="title") String title,
+	// 		@RequestParam(name="place") String place,
+	// 		@RequestParam(name="numPeople") String numPeople,
+	// 		@RequestParam(name="deadline") LocalDateTime deadline,
+	// 		@RequestParam(name="price") String price,
+	// 		@RequestParam(name="url") String url,
+	// 		@RequestParam(name="content") String content) throws IllegalStateException, IOException {
 		
 		
-		// System.out.println(insert);
+	// 	// System.out.println(insert);
 		
-		System.out.printf("title: %s, place: %s, numPeople :%s, date: %s, price: %s, url: %s, content: %s\n",
-				title, place, numPeople, deadline, price, url, content);
+	// 	System.out.printf("title: %s, place: %s, numPeople :%s, date: %s, price: %s, url: %s, content: %s\n",
+	// 			title, place, numPeople, deadline, price, url, content);
 		
-		List<Image> imageList = new ArrayList<Image>();
+	// 	List<Image> imageList = new ArrayList<Image>();
 		
-		// 파일 여러 개 받기  
-		for(int i=0; i<imgs.length; i++) {
-			MultipartFile img = imgs[i];
+	// 	// 파일 여러 개 받기  
+	// 	for(int i=0; i<imgs.length; i++) {
+	// 		MultipartFile img = imgs[i];
 			
-			// 파일 업로드가 안될 시, 예외 처리
-			if(img.isEmpty())
-				continue;
+	// 		// 파일 업로드가 안될 시, 예외 처리
+	// 		if(img.isEmpty())
+	// 			continue;
 			
-			// 파일 경로 알아 내기(논리적, 물리적)** : urlPath, realPath 
-			String urlPath = "/images/member/stuff/" + img.getOriginalFilename();
-			String realPath = request.getServletContext().getRealPath(urlPath);
+	// 		// 파일 경로 알아 내기(논리적, 물리적)** : urlPath, realPath 
+	// 		String urlPath = "/images/member/stuff/" + img.getOriginalFilename();
+	// 		String realPath = request.getServletContext().getRealPath(urlPath);
 			
-			System.out.printf("%s", realPath);
+	// 		System.out.printf("%s", realPath);
 			
-			// 물리 경로에 폴더가 없으면, 폴더도 생성
-			File savePath = new File(realPath);
+	// 		// 물리 경로에 폴더가 없으면, 폴더도 생성
+	// 		File savePath = new File(realPath);
 			
-			if(!savePath.exists()) 
-				savePath.mkdirs();
+	// 		if(!savePath.exists()) 
+	// 			savePath.mkdirs();
 			
-			// 그 물리적 경로로 파일 저장하는 방법**
-			img.transferTo(new File(realPath));
-			System.out.printf("%s", realPath);
+	// 		// 그 물리적 경로로 파일 저장하는 방법**
+	// 		img.transferTo(new File(realPath));
+	// 		System.out.printf("%s", realPath);
 			
 			
-			// 그 이미지를 DB에 저장하기!!** 
-			Image image = new Image();
-			image.setName(img.getOriginalFilename());
+	// 		// 그 이미지를 DB에 저장하기!!** 
+	// 		Image image = new Image();
+	// 		image.setName(img.getOriginalFilename());
 
 			
-			// ArrayList에 add해서 Image 정보 넣기!
-			imageList.add(image);
-		}
+	// 		// ArrayList에 add해서 Image 정보 넣기!
+	// 		imageList.add(image);
+	// 	}
 		
-		Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, imageList);
+	// 	Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, imageList);
 		
-		service.regStuff(stuff);
+	// 	service.regStuff(stuff);
 		
-		// redirect가 되기 위해서 html의 form 태그의 action, method 맞춰주기!
-		return "redirect:list";
-	}
+	// 	// redirect가 되기 위해서 html의 form 태그의 action, method 맞춰주기!
+	// 	return "redirect:list";
+	// }
 	
 	// 파일 업로드
 //	@PostMapping("reg")	// 이게 맞나? upload인가?

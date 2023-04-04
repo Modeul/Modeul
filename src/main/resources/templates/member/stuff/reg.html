@@ -15,10 +15,11 @@
     <link href="../../css/button.css" type="text/css" rel="stylesheet">
     <link href="../../css/component/member/stuff/component-reg.css" type="text/css" rel="stylesheet">
     <!-- <link href="../../css/component/component.css" type="text/css" rel="stylesheet"> -->
-    <script type="text/javascript" src="../../js/member/stuff/reg.js"></script>
+    <script type="text/javascript" src="../../js/member/stuff/reg.js" defer="defer"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 
-<body>
+<body id="reg-main-section">
     <!-- =================== reg1 ======================= -->
     <section class="reg1-form">
         <h1 class="d-none">reg1</h1>
@@ -39,7 +40,7 @@
             <!-- =================== reg1 : main ===================== -->
             <main>
                 <div class="reg1-main-content">
-                    <h1>지역 주민들과 어떤 물건을 같이 살까요?</h1>
+                    <h1>지역 주민들과 어떤 물건을 같이 살까요?<span v-text="test"></span></h1>
                 </div>
     
                 <div class="category-select">
@@ -48,7 +49,7 @@
                         <li><button class="select-box categ-eff" name="supermarket">대형마트 대량 물품</button></li>
                         <li><button class="select-box categ-eff" name="delivery_food">딜리버리 푸드</button></li>
                     </ul>
-                    <button class="btn-next m-t-button">다음</button>
+                    <button class="btn-next m-t-button" @click.prevent="dnoneHandler">다음</button>
                 </div>
             </main>
     
@@ -56,7 +57,7 @@
   </section>
 
     <!-- =================== reg2 ======================= -->
-    <section class="reg2-form d-none">
+    <section class="reg2-form">
         <h1 class="d-none">reg2</h1>
 
         <section class="canvas-1 d-fl fl-dir-col">
@@ -68,7 +69,7 @@
             <header class="">
                 
                 <div class="reg2-back">
-                    <a class="icon icon-back">뒤로가기</a>
+                    <a class="icon icon-back" @click.prevent="dnoneHandler">뒤로가기</a>
                 </div>
                 
                 <div class="hd-title-box">
@@ -90,11 +91,19 @@
                         <!-- 파일업로드 버튼 만드는 법 -->
                         <label for="file">
                             <div class="btn-file">파일업로드</div>
-                            <div class="btn-uploaded-files">파일업로드된 파일들1</div>
+                            <div class="btn-uploaded-files">
+                                파일업로드된 파일들1
+                                <div class="btn-uploaded-files" id="result_file">
+                                    <!-- <img :src="'/path/to/images/' + fileName" /> -->
+                                    <!-- src="/images/member/stuff/chick.jpg" -->
+                                    <img class="uploaded-files" :src="imagepath" />
+                                </div>
+                            
+                            </div>
                             <div class="btn-uploaded-files">파일업로드된 파일들2</div>
                         </label>
-    
-                        <input type="file" class="d-none" id="file" name="imgs" multiple>
+                                                                                                            <!-- @change="imageUploadImage" -->
+                        <input type="file" class="d-none" id="file" name="imgs" v-model="file" multiple accept="image/*" @change="showImage(file)">
                     </div>
 
                     <!-- 기존 카테고리 -->

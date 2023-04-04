@@ -28,19 +28,24 @@ Vue
 		    test: '가좌동',
 		    list: [],
 		    categoryList:[],
+			
 		    category:[],
-		   	id:[]
+		   	stuff:{id:"3"}
 	  };
 	},
 	
 	methods:{
-			viewClickHandler(id){
-					
+			viewClickHandler(sid){
+				console.log(sid);	
+				
 			},
-			categoryClickHandler(){
-					
+			categoryClickHandler(cid){
+				// this.id = cid;	
+				// console.log(this.stuff.id);
+				console.log(cid);
+				this.list.categoryId=cid;
 			},
-			getList(){
+			load(){
 				var requestOptions = {
 				  method: 'GET',
 				  redirect: 'follow'
@@ -49,21 +54,23 @@ Vue
 				fetch("http://localhost:8080/member/stuffs", requestOptions)
 				  .then(response => response.json())
 				  .then(list => {
-						this.list = list
+						this.list = list;
+						console.log(this);
 					})
 				  .catch(error => console.log('error', error));
 			},
 			
-			getCategoryList(){
+			loadCategory(){
 				var requestOptions = {
 				  method: 'GET',
 				  redirect: 'follow'
 				};
 				
-				fetch("http://localhost:8080/member/stuff/categories", requestOptions)
+				fetch("http://localhost:8080/member/stuffs/categories", requestOptions)
 				  .then(response => response.json())
 				  .then(categoryList => {
 						this.categoryList = categoryList
+						console.log(this);
 					})
 				  .catch(error => console.log('error', error));
 			}
@@ -77,9 +84,10 @@ Vue
 	beforeMount(){console.log("beforeMount")},
 	mounted(){
 		console.log("mounted")
-		this.getList();
-		this.getCategoryList();
+		this.load();
+		this.loadCategory();
 		this.categoryClickHandler();
+		this.viewClickHandler();
 	},
 	beforeUpdate(){console.log("beforeUpdate")},
 	updated(){console.log("updated")},

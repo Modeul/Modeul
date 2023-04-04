@@ -72,13 +72,11 @@
   <insert id="insert" parameterType="Stuff">
     insert into stuff(title, place, num_people, deadline, price, url, content)
     values(#{title},#{place},#{numPeople},#{deadline},#{price},#{url},#{content})
-	
 	<selectKey resultType="long" keyProperty="id" order="AFTER">
   
   		select last_insert_id()
   
-  	</selectKey>   
-  
+  	</selectKey>  	
   </insert>
   
   <insert id="imageUpload" parameterType="Image">
