@@ -9,4 +9,10 @@
   	select *
   	from category
   </select>
+  
+  <select id="findNameById" resultType="Category">
+  	select *
+  	from category
+  	where id=#{categoryId}
+  </select>
 </mapper>

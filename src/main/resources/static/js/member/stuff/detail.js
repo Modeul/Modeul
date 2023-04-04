@@ -6,10 +6,16 @@ window.addEventListener("load", function(){
     var img = detailSection.querySelector(".detail-img");
     var modalImg = detailSection.querySelector(".modal-img");
     var closeIcon = detailSection.querySelector(".icon-close");
-
+	
+	// const image = [[${imageName}]];
+	
     img.onclick = function(){
         modal.style.display = 'block';
-        modalImg.src = "../../images/member/stuff/chick.jpg";
+        
+        //modalImg.src = "/images/member/stuff/" + image;
+        modalImg.src = "/images/member/stuff/chick.jpg";
+        
+       
     };
 
     closeIcon.onclick = function(){

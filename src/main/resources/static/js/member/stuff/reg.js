@@ -1,4 +1,4 @@
-window.addEventListener("load", function(){
+/* window.addEventListener("load", function(){
 
     // reg1에서 reg2로 페이지 이동 
     const reg2 = document.querySelector('.reg2-form');
@@ -53,3 +53,100 @@ window.addEventListener("load", function(){
     //     resultElement.innerText = number;
     //   }
 });
+*/
+
+
+// 위에 있는 JS 이벤트 핸들러 Vue로 다 바꾸기!!** DOM과 Vue 중에서 우선 순위가 Vue.js이다. 
+// ================== Vue.js ============================================
+Vue
+.createApp({
+	
+	// 테스트부터 해볼 것!
+	data() {
+	  return {
+        test:"?",
+        isActive:true,
+        file:'',
+        image:'',
+        result:[] ,
+        imagepath:''
+
+	  };
+	},
+	
+	methods:{
+        dnoneHandler(){
+            this.isActive=!this.isActive;
+        },
+
+        imageUploadImage(e){
+            
+            this.file = e.target.files[0];
+            console.log(this.file);
+            
+            
+            // 너무 열심히 찾아서 없애주기!!
+            // boundary를 찾지 못한다는 소리인데 Content-Type을 지정해두게 되면 
+            // Multipart boundary를 열심히 찾는구나~ 라고 이해하고 주석처리하니까
+            // var myHeaders = new Headers();
+            // myHeaders.append("Content-Type", "multipart/form-data");
+            
+            var formdata = new FormData();
+            formdata.append("imgs", this.file);
+            console.log(formdata);
+            
+            var requestOptions = {
+              method: 'POST',
+              // headers: myHeaders,
+              body: formdata,
+              redirect: 'follow'
+            };
+            
+            fetch("http://localhost:8080/member/stuffs/uploadimage", requestOptions)
+              .then(response => response.json())
+              .then(result => {
+                this.result = result
+                console.log(this.result);
+                console.log(result);
+                })
+              .catch(error => console.log('error', error));
+            
+        },
+
+        // 썸네일
+        showImage(image){
+            // if(e.files && e.files[0])
+            var fileData = (data) => {
+                this.imagepath = data
+            }
+            var reader = new FileReader();
+
+            this.image = image.target.files[0];
+            console.log(this.image);
+
+            reader.readAsDataURL(this.image);
+            reader.addEventListener("load",function(){
+                fileData(reader.result);
+            },false);
+            console(reader);
+        }
+
+	},
+	
+	beforeCreate(){console.log("beforeCreate")},
+	created(){console.log("created")},
+	beforeMount(){console.log("beforeMount")},
+	mounted(){
+		console.log("mounted")
+        this.imageUploadImage();
+        this.showImage();
+		this.dnoneHandler();
+	},
+	beforeUpdate(){console.log("beforeUpdate")},
+	updated(){console.log("updated")},
+	beforeUnmount(){console.log("beforeUnmount")},
+	unmounted(){console.log("unmounted")}
+	
+})
+.mount('#reg-main-section');
+

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+	xmlns=th="http://www.thymeleaf.org"
+>
 
 <head>
     <meta charset="UTF-8">
@@ -20,30 +22,35 @@
         <!-- 검색창 들어가는 부분 -->
         <header class="d-fl-al">
                 <div>
-                    <a href="./list.html" class="icon icon-back" >뒤로가기</a>
+                    <a href="./list" class="icon icon-back" >뒤로가기</a>
                 </div>
 
                 <div class="search-container">
-                    <form action="" class="d-fl d-b-none search-form" method="get">
+                    <form action="listsearch" class="d-fl d-b-none search-form" method="get">
                         <h1 class="icon search-dodbogi m-l-6px">돋보기</h1>
-                        <input type="search" id="search-bar" class="search-input m-l-6px"  placeholder="검색어 입력">
+                        <input type="search" name="q" th:value="${param.q}" id="search-bar" class="search-input m-l-6px"  placeholder="검색어 입력">
                     </form>
                 </div>
         </header>
 
         <!-- 검색창 들어가는 부분 -->
 
-        <div class="header-categ-box">
-            <div class="header-categ">
-                일반상품
-            </div>
-            <div class="header-categ">
-                딜리버리 푸드
-            </div>
-            <div class="header-categ">
-                대형마트 대량 물품
-            </div>
-        </div>
+ 			<nav>
+              <form action="listsearch" method="get" class="header-categ-box">
+               	 <div> 
+               	 	<button class="header-categ">전체</button>
+               	 </div>
+                 	 
+                 	 <!-- category를 a태그나 button 태그로 해도 되는데 button 태그가 맞는거 같다. -->
+		         <!-- button 태그에는 "formacton"이라는 속성이 있어서 form 태그로 묶어서 제출 버튼이 있는 경우, 
+		         기존 form action 보다 버튼의 formaction의 특성이 우선 순위로 action 동작한다.  -->
+		         <div th:each="c: ${categoryList}">
+		            <button class="header-categ" name="cselect" value="1" 
+		            th:name="c" th:value="${c.id}" th:text="${c.name}"
+		            >일반상품</button>
+		         </div>
+		      </form>
+			</nav>
 
         <main class="result-list d-none">
             <div class="d-gr li-gr list-cl" onclick="location.href='detail.html'">

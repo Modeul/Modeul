@@ -16,10 +16,16 @@ class CategoryServiceImplTest {
 	@Autowired
 	private CategoryService service;
 	
-	@Test
+	//@Test
 	void testgetList() {
 		List<Category> list = service.getList();
 		System.out.println(list);
+	}
+	
+	@Test
+	void testgetNameById() {
+		String categoryName = service.getNameById(3L);
+		System.out.println(categoryName);
 	}
 
 }

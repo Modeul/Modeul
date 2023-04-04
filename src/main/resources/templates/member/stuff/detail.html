@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+	xmlns=th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,8 +14,31 @@
     <link href="../../css/component/member/stuff/component-detail.css" type="text/css" rel="stylesheet">
    
     <!-- <script type="module" src="../../js/member/stuff/detail.js"></script> -->
-    <script type="text/javascript" src="../../js/member/stuff/detail.js"></script>
+<!--     <script th:inline="javascript" src="../../js/member/stuff/detail.js" defer="defer"></script> -->
+    <script src="../../js/member/stuff/detail.js" defer="defer"></script>
+	
+<!-- 	<script type="text/javascript" defer="defer">
+	
+	    var detailSection = document.querySelector(".detail");
+	
+	    var modal = detailSection.querySelector(".detail-modal");
+	    var img = detailSection.querySelector(".detail-img");
+	    var modalImg = detailSection.querySelector(".modal-img");
+	    var closeIcon = detailSection.querySelector(".icon-close");
+		
+		
+    	img.onclick = function(){
+	        modal.style.display = 'block';
+	        // var image = [[${imageName}]];
+	        modalImg.src = "[[@{/images/member/stuff/{img}(img=${imageName})}]]";
+    	};
+    	
+        closeIcon.onclick = function(){
+            event.stopPropagation();
+            modal.style.display = 'none';
+        }
 
+	</script> -->
 </head>
 <body>
     <!-- detail : flex-container -->
@@ -28,7 +53,7 @@
             <div class="detail-main">
                 <!-- detail-img : detail-main - item1 -->
                 <div class="detail-img">
-                    <img src="../../../../images/member/stuff/chick.jpg" alt="img">
+                    <img th:src="@{/images/member/stuff/{img}(img=${imageName})}" src="../../../../images/member/stuff/chick.jpg" alt="img">
                     
                     <!-- image : modal -->
                     <div class="detail-modal">
@@ -46,10 +71,10 @@
                 <!-- detail-heading : detail-main - item2 -->
                 <section class="canvas detail-heading"> 
                     <h1 class="d-none">heading</h1>
-                    <div class="detail-category">대형마트 대량 물품</div>
-                    <p class="detail-heading-title">금요일에 같이 치킨 드실 분?</p>
+                    <div class="detail-category" th:text="${categoryName}">대형마트 대량 물품</div>
+                    <p class="detail-heading-title" th:text="${stuff.title}">금요일에 같이 치킨 드실 분?</p>
                     <div class="d-fl">
-                        <div class="detail-price">22,000원</div>
+                        <div class="detail-price" th:text="${stuff.price} + 원">22,000원</div>
                         <div class="detail-status">모집중</div>
                         <div class="detail-heart" >찜</div>
                         <div class="icon-heart">하트</div>
@@ -59,16 +84,16 @@
                 <section class="canvas detail-info">
                     <h1 class="d-none">info</h1>
                     <div>•인원</div>
-                    <div>2 / 5</div>
+                    <div th:text="|1 / ${stuff.numPeople}|">2 / 5</div>
                     <div>•기한</div>
-                    <div>2월 10일 13:00</div>
+                    <div th:text="${#temporals.format(stuff.deadline, 'M월 d일 HH:mm')}">2월 10일 13:00</div>
                     <div>•장소</div>
-                    <div>땡땡아파트 정문</div>
+                    <div th:text="${stuff.place}">땡땡아파트 정문</div>
                 </section>
                 <!-- detail-writing : detail-main - item4 -->
                 <section class="canvas detail-writing">
                     <h1 class="d-none">writing</h1>
-                    <p class="detail-paragraph"> 
+                    <p class="detail-paragraph" th:text="${stuff.content}"> 
                         hi<br>
                         hi<br>
                         hi<br>

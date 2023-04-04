@@ -1,5 +1,6 @@
 package com.modeul.web.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class Member {
 	private String phone;
 	private String nicname;
 	private Date regDate;
-	private Integer level;
+	private LocalDateTime level;
 	
 
 }

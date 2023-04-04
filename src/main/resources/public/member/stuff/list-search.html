@@ -33,17 +33,19 @@
 
         <!-- 검색창 들어가는 부분 -->
 
-        <div class="header-categ-box">
-            <div class="header-categ">
-                일반상품
-            </div>
-            <div class="header-categ">
-                딜리버리 푸드
-            </div>
-            <div class="header-categ">
-                대형마트 대량 물품
-            </div>
-        </div>
+ 			<nav>
+                  <form action="./list-search.html" method="get" class="header-categ-box">
+                  	 <div> 
+                  	 	<button class="header-categ" name="c" value="1">전체</button>
+                  	 </div>
+                  	 	
+			         <div>
+			            <button class="header-categ" name="c" value="1">일반상품</button>
+			            <button class="header-categ" name="c" value="2">딜리버리 푸드</button>
+            			<button class="header-categ" name="c" value="3">대형마트 대량 물품</button>
+			         </div>
+			      </form>
+			</nav>
 
         <main class="result-list d-none">
             <div class="d-gr li-gr list-cl" onclick="location.href='detail.html'">

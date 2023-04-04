@@ -58,6 +58,13 @@
     text-indent: -999px;
 }
 
+.uploaded-files{
+    width: 43px;
+    height: 40px;
+    position: absolute;
+    left: 300px;
+}
+
 /* === detail ====================== */
 .btn-enter{
     margin: auto;

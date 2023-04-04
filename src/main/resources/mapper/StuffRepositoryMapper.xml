@@ -12,7 +12,11 @@
   <resultMap id="stuffResultMap" type="Stuff">
   	<result property="numPeople" column="num_people"/>
   	<result property="regDate" column="reg_date"/>
+  	<result property="categoryId" column="category_id"/>
+  	<result property="memberId" column="member_id"/>
   </resultMap> 
+ <!--  StuffView는 원래 알던 개념 db 칼럼명과 일치시켜서 그 칼럼의 데이터 이용하게 한다.
+ 그리고 StuffView 이런 식으로 덩어리로 인자를 사용하면 resultMap으로 세부 칼럼들을 매핑 시켜줘야 한다. -->
   <resultMap id="stuffViewResultMap" type="StuffView">
   	<result property="categoryId" column="category_id"/>
   	<result property="categoryName" column="category_name"/>
@@ -21,11 +25,11 @@
   	<result property="regDate" column="reg_date"/>
   </resultMap>
 
-<!--   <select id="findbyId" resultMap="stuffResultMap">
+  <select id="findbyId" resultMap="stuffResultMap">
   	select *
   	from stuff
   	where id = #{id}
-  </select> -->
+  </select>
   
 
   <!-- VIEW 이용할 때, on 조건 중 id 뭐로 연결할 건지 다시 생각!
@@ -52,9 +56,32 @@
 	</if>
   </select>
   
+  <!-- selectKey, LAST_INSERT_ID() 찾기!! -->
+<!--   <insert id="insert" parameterType="Stuff">
+    insert into stuff(title, place, num_people, deadline, price, url, content)
+    values(#{title},#{place},#{numPeople},#{deadline},#{price},#{url},#{content})
+	
+	<selectKey resultType="long" keyProperty="id" order="AFTER">
+  
+  		select last_insert_id()
+  
+  	</selectKey>   
+  
+  </insert> -->
+  
   <insert id="insert" parameterType="Stuff">
-    insert into stuff(title, place, num_people, price, url, content)
-    values(#{title},#{place},#{numPeople},#{price},#{url},#{content})
+    insert into stuff(title, place, num_people, deadline, price, url, content)
+    values(#{title},#{place},#{numPeople},#{deadline},#{price},#{url},#{content})
+	<selectKey resultType="long" keyProperty="id" order="AFTER">
+  
+  		select last_insert_id()
+  
+  	</selectKey>  	
+  </insert>
+  
+  <insert id="imageUpload" parameterType="Image">
+  	insert into image(name, stuff_id)
+  	values(#{name}, #{stuffId})
   </insert>
   
 </mapper>

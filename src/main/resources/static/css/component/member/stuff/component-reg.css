@@ -64,6 +64,7 @@
     margin-top: 1%;
     border: none;
     overflow: auto;
+    margin: auto;
 }
 .people-count-box{
     display: flex;

@@ -17,10 +17,16 @@ class CategoryRepositoryTest {
 	@Autowired
 	private CategoryRepository repository;
 	
-	@Test
+	//@Test
 	void testfindAll() {
 		List<Category> list = repository.findAll();
 		System.out.println(list);
+	}
+	
+	@Test
+	void testfindNameById() {
+		Category categoryName = repository.findNameById(3L);
+		System.out.println(categoryName);
 	}
 
 }
