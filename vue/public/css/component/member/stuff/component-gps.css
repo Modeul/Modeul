@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.canvas {
+    background: white;
+}
+
+
+.p-l-30p {
+    padding-left: 30%;
+}
+
+
+/* ======= 지도 ======= */
+#map {
+    width: 97%;
+    height: 300px;
+    border-radius: 10px;
+}

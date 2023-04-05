@@ -1,0 +1,64 @@
+@charset "UTF-8"; 
+
+
+/* flex-container */
+
+
+.tablebox-admin{
+  width: 80%;
+}
+
+/* ========= 목록 : 그리드 버전 ============== */
+
+/* .li-ad-gr {
+  grid-template-columns: repeat(8, minmax(130px, auto));
+  grid-template-rows: repeat(6, minmax(40px, auto));
+  grid-row-gap: 1%;
+  grid-column-gap: 2%;
+  align-items: center;
+  justify-items: center;
+  border: 2px solid #000;
+  border-radius: 10px;
+  grid-template-areas:
+      "img id nic name email addr pw btn"
+      " .   .  .    .    .    .    .  ."
+      " .   .  .    .    .    .    .  ."
+      " .   .  .    .    .    .    .  ."
+      " .   .  .    .    .    .    .  ."
+      " .   .  .    .    .    .    .  ."
+
+}
+
+.li-ad-img {
+  grid-area: img;
+}
+
+.li-ad-id {
+  grid-area: id;
+}
+
+.li-ad-nicname {
+  grid-area: nic;
+}
+
+.li-ad-name {
+  grid-area: name;
+}
+
+.li-ad-email {
+  grid-area: email;
+}
+
+.li-ad-address {
+  grid-area: addr;
+}
+
+.li-ad-pw {
+  grid-area: pw;
+}
+
+.li-ad-btn {
+  grid-area: btn;
+} */
+/* ============================= */
+
