@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html>
+<style>
+@import url('/src/assets/css/component/component-login.css');
+</style>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="./css/reset.css" type="text/css" rel="stylesheet">
-    </link>
-    <link href="./css/style.css" type="text/css" rel="stylesheet">
-    </link>
-    <link href="./css/utils.css" type="text/css" rel="stylesheet">
-    </link>
-    <link href="./css/button.css" type="text/css" rel="stylesheet">
-    </link>
-    <link href="./css/component/component.css" type="text/css" rel="stylesheet">
-    </link>
-    <link href="./css/component/component-login.css" type="text/css" rel="stylesheet">
-    </link>
-
-</head>
-
-<body>
+<template>
     <div class="canvas f-family">
 
         <header>
@@ -38,7 +19,7 @@
                     <div class="input-field-1">
                         <label for="uid" class="uid-label">
                             <span class="d-none">uid</span>
-                            <input type="text" id="uid" name="uid" class="input-text" placeholder=" 아이디 tem">
+                            <input type="text" id="uid" name="uid" class="input-text" placeholder=" 아이디">
                         </label>
                     </div>
                     <div class="input-field-1 m-t-1">
@@ -60,15 +41,12 @@
                     <a class="find-text" href="비밀번호찾기페이지">비밀번호 찾기</a>
                 </div>
 
-                <div class="m-t-68px">
-                    <a class="signup-text" href="sign-up">회원가입</a>
+                <div class="m-t-68px signup-text">
+                    <router-link to="/signup">회원가입</router-link>
                 </div>
             </div>
 
         </main>
 
     </div>
-
-</body>
-
-</html>
+</template>

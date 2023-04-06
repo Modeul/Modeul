@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+.header-categ-box{
+    padding-bottom: 13px;
+}
+
+.list-cl{
+    margin-top: 4px;
+}
+/* 서치박스 */
+
+.d-fl-al{
+    justify-content: space-evenly;
+    
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    top:-3px;
+
+    /* border: 1px solid #E4DFDF; */
+    border-radius: 10px;
+    
+    width: 90%;            /* 여기 수정 */
+  }
+
+
+
+.header-categ-box {
+    margin-top: 12px;
+}
+
+.li-header-categ {
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+
+.li-gr {
+    grid-template-columns: repeat(6, minmax(60px, auto));
+    grid-template-rows: repeat(3, minmax(24px, auto));
+    grid-row-gap: 1%;
+    grid-column-gap: 2%;
+    align-items: center;
+    grid-template-areas:
+        "pic ct ct . . ht"
+        "pic subj subj subj subj ht"
+        "pic mem dt dt dt ht"
+}
+
+.li-categ {
+    grid-area: ct;
+}
+
+.li-pic {
+    grid-area: pic;
+    grid-area: pic;
+    background-image: url(../../../../images/member/stuff/chick.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    width: 54px;
+    height: 54px;
+
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -999px;
+    justify-self: center;
+    align-self: center;
+}
+
+.li-header-categ {
+    margin: auto;
+    margin-left: 0px;
+
+}
+
+.li-subj {
+    grid-area: subj;
+    font-size: 0.8rem;
+}
+
+.li-member {
+    grid-area: mem;
+    font-size: 0.5rem;
+}
+
+.li-date {
+    grid-area: dt;
+    font-size: 0.5rem;
+}
+
+.li-heart {
+    justify-self: center;
+    align-self: center;
+    grid-area: ht;
+    width: 14px;
+    height: 14px;
+    background-size: auto;
+}

@@ -1,0 +1,95 @@
+@charset "UTF-8"; 
+
+/* ----------- reg1 ----------- */
+
+.reg1-main-content{
+    margin-top: 109px;
+    text-align: center;
+}
+
+
+/* ----------- reg1 카테고리 박스 선택 ----------- */
+.category-select{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.select-box-list{
+    margin-top: 105px;
+}
+
+
+.categ-eff:active{
+    border-radius: 10px;
+    background-color: #F0F2F3;
+}
+
+.m-t-button{
+    margin-top: 114px;
+}
+
+
+/* ----------- reg2 ----------- */
+
+.reg2-post{
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 18px;
+
+    border: none;
+    background-color: #fff;
+    color: #63A0C2;
+
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.file-box{ 
+    margin-top: 35px;
+
+}
+
+.select-content{ 
+    height: 300px;
+}
+
+
+.input-content{
+    width: 80%;
+    height: 70%;
+    margin-top: 1%;
+    border: none;
+    overflow: auto;
+    margin: auto;
+}
+.people-count-box{
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+}
+.people-count-num{
+   width: 30px;
+   text-align: center;
+}
+
+
+/* datetime-local 조절용 */
+input[type='datetime-local']::before {
+    content: attr(data-placeholder);
+    width: 90%;
+    text-align: right;
+    margin-right: 15px;
+  }
+  input[type='datetime-local']:focus::before,
+  input[type='datetime-local']:valid::before {
+     display: none; 
+  }
+  .date-pic{
+    display: inline-block;
+    margin-right: 10px;
+    width: 70%;
+  }
