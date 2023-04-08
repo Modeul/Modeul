@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,5 +25,5 @@ public class Stuff {
 	private String price;
 	private String content;
 	private int memberId;
-	private long catecoryId;
+	private int categoryId;
 }

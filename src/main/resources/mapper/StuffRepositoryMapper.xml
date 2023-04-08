@@ -3,37 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.modeul.web.repository.StuffRepository">
-	<resultMap type="StuffViewDTO" id="stuffViewResultMap">
+	<resultMap type="StuffView" id="stuffViewResultMap">
+		<result property="regDate" column="reg_date" />
 		<result property="numPeople" column="num_people" />
+		<result property="memberId" column="member_id" />
 		<result property="categoryId" column="category_id" />
 		<result property="categoryName" column="category_name" />
 	</resultMap>
 
-	<insert id="insert" parameterType="StuffVO">
+	<insert id="insert" parameterType="Stuff">
 		insert into stuff(title, place, num_people, url, deadline, price,
 		content,
 		category_id)
 		values(#{title}, #{place}, ${numPeople}, #{url},
 		#{deadline}, #{price}, #{content}, ${categoryId})
 
-		<!-- 현재 stuff Table과 stuff Table의 PK를 FK로 사용하는 image Table이 있다 -->
-		<!-- image Table에 정보를 등록하기 위해서는 DB에 등록하는 과정에서 새롭게 값이 부여되는 stuff Table의 
-			id(PK)가 필요하다. -->
 		<selectKey resultType="int" keyProperty="id" order="AFTER">
-			<!-- order를 BEFORE로 하면 insert 쿼리문이 실행 되기전에 실행된다 -->
-			<!-- BEFORE로 하게 되면 문제가 있다. 100번이 등록 됐다가 삭제된다면 DB의 자동생성키 기능으로 인해 다음 생성하는 
-				값은 101이지만 <selectKey> 태그 내부 쿼리 결과는 100이 되어서 일치하지 않는 문제가 발생할 수 있다 -->
 			SELECT LAST_INSERT_ID()
-			<!-- DB 마지막 ID 값을 StuffVO id에 넣어준다 -->
 		</selectKey>
 
 
 
 	</insert>
 
-	<insert id="insertImage" parameterType="ImageVO">
-		insert into image(name, stuff_id)
-		values(#{name}, ${stuffId})
+	<insert id="insertImage" parameterType="hashMap">
+		insert into image(name,
+		stuff_id)
+		values(#{uploadFileName}, ${stuffId})
 	</insert>
 
 	<select id="findViewAll" resultMap="stuffViewResultMap">

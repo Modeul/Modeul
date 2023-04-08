@@ -1,20 +1,20 @@
 package com.modeul.web.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.modeul.web.entity.ImageVO;
-import com.modeul.web.entity.StuffVO;
-import com.modeul.web.entity.StuffViewDTO;
+import com.modeul.web.entity.Stuff;
+import com.modeul.web.entity.StuffView;
 
 @Mapper
 public interface StuffRepository {
 	
-	int insert(StuffVO stuffVO);
+	int insert(Stuff Stuff);
 	
-	int insertImage(ImageVO imageVO);
+	int insertImage(Map<String, Object> imageMap);
 	
-	List<StuffViewDTO> findViewAll();
+	List<StuffView> findViewAll();
 
 }

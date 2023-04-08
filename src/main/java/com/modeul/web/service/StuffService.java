@@ -2,11 +2,11 @@ package com.modeul.web.service;
 
 import java.util.List;
 
-import com.modeul.web.entity.StuffVO;
-import com.modeul.web.entity.StuffViewDTO;
+import com.modeul.web.entity.StuffDTO;
+import com.modeul.web.entity.StuffView;
 
 public interface StuffService {
-	int regStuff(StuffVO stuffVO);
+	int regStuff(StuffDTO stuffDTO);
 
-	List<StuffViewDTO> getViewList();
+	List<StuffView> getViewList();
 }

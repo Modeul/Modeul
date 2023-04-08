@@ -1,6 +1,29 @@
 <style>
-@import url('/src/assets/css/component/member/stuff/component-list.css');
+@import url('../../../assets/css/component/member/stuff/component-detail.css');
 </style>
+
+<script>
+export default {
+    data() {
+        return {
+            list: [],
+            categoryList: null
+        }
+
+    },
+    mounted() {
+        fetch("http://localhost:8081/stuff")
+            .then(response => response.json())
+            .then(result => {
+                this.list = result.list;
+                this.categoryList = result.categoryList;
+            })
+            .catch(error => console.log('error', error));
+    }
+
+
+}
+</script>
 
 <template>
     <section class="canvas p-rel b-rad-2">
@@ -19,16 +42,15 @@
                         <span></span> <span></span> <span></span>
                     </label>
                     <div class="sidebar">
-                        <div class="welcome f-weight">
+                    <div class="welcome f-weight">
                             <span class="f-color-2">뉴렉님</span><br>환영합니다.
                         </div>
                         <div class="side-menu">
                             <div></div>
                             <span class="sidebar-padding" onclick="location.href='list'">홈</span>
-                            <span class="sidebar-padding" onclick="location.href='list-search'">검색하기</span> <span
-                                class="sidebar-padding" onclick="location.href='reg'">글
-                                등록하기</span> <span class="sidebar-padding"
-                                onclick="location.href='../participation/list'">채팅하기</span>
+                            <span class="sidebar-padding" onclick="location.href='list-search'">검색하기</span>
+                            <span class="sidebar-padding" onclick="location.href='reg'">글 등록하기</span> 
+                            <span class="sidebar-padding" onclick="location.href='../participation/list'">채팅하기</span>
                         </div>
                     </div>
                 </a>
@@ -38,60 +60,58 @@
             <form action="list" method="get">
                 <div class="header-categ-box">
                     <button class="header-categ">전체</button>
-                    <button class="header-categ" name="c" value="1" th:each="c : ${categoryList}" th:text="${c.name}"
-                        th:value="${c.id}">일반상품</button>
+                    <button class="header-categ" name="c" value="1">일반상품</button>
                     <!-- <button class="header-categ" name="c" value="2">딜리버리 푸드</button>
-					<button class="header-categ" name="c" value="3">대형마트 대량 물품</button> -->
+                        					<button class="header-categ" name="c" value="3">대형마트 대량 물품</button> -->
                 </div>
             </form>
         </nav>
         <!-- member/stuff/list -->
 
-        <!-- 나중에 onclick 이벤트 하트 부분만 빼고 넣기 -->
-        <main>
-            <div th:each="s : ${list}" th:if="${param.c}? ${#strings.equals(param.c, s.categoryId)} : true">
+    <!-- 나중에 onclick 이벤트 하트 부분만 빼고 넣기 -->
+    <main>
+        <div v-for="s in list">
 
-                <div class="d-gr li-gr m-t-13px list-cl" onclick="location.href='detail'">
-                    <!-- 나중에 전체를 div로 묶어서 main으로 크게 묶기 -->
-                    <div class="li-pic b-rad-1">사진</div>
-                    <div class="li-categ header-categ li-header-categ" th:text="${s.categoryName}">딜리버리 푸드</div>
-                    <div class="li-heart icon icon-heart">찬하트</div>
-                    <div class="li-subj" th:text="${s.title}">서강대 앞 교촌치킨 시켜드실 분</div>
-                    <div class="li-member" th:text="${s.numPeople} + '/8'">2/5</div>
-                    <div class="li-date" th:text="${#temporals.format(s.deadline, 'M월 d일 H시까지')}">2월
-                        3일 금 18시까지</div>
-                </div>
-                <div>
-                    <h1 class="icon icon-line">선 긋기</h1>
-                </div>
+            <div class="d-gr li-gr m-t-13px list-cl" onclick="location.href='detail'">
+                <!-- 나중에 전체를 div로 묶어서 main으로 크게 묶기 -->
+                <div class="li-pic b-rad-1">사진</div>
+                <div class="li-categ header-categ li-header-categ">{{ s.catagoryName }}</div>
+                <div class="li-heart icon icon-heart">찬하트</div>
+                <div class="li-subj">{{ s.title }}</div>
+                <div class="li-member">{{ s.numPeople }}</div>
+                <div class="li-date">{{ s.deadline }}</div>
             </div>
+            <div>
+                <h1 class="icon icon-line">선 긋기</h1>
+            </div>
+        </div>
 
 
-            <!-- <div class="d-gr li-gr  list-cl" onclick="location.href='detail'">
+        <!-- <div class="d-gr li-gr  list-cl" onclick="location.href='detail'">
 				나중에 전체를 div로 묶어서 main으로 크게 묶기
 				<div class="li-pic b-rad-1">사진</div>
-				<div class="li-categ header-categ li-header-categ">딜리버리 푸드</div>
-				<div class="li-heart icon icon-heart">찬하트</div>
-				<div class="li-subj">서강대 앞 교촌치킨 시켜드실 분</div>
-				<div class="li-member">2/5</div>
-				<div class="li-date">2월 3일 금 18시까지</div>
-			</div>
-			<div>
-				<h1 class="icon icon-line">선 긋기</h1>
-			</div>
+    				<div class="li-categ header-categ li-header-categ">딜리버리 푸드</div>
+    				<div class="li-heart icon icon-heart">찬하트</div>
+    				<div class="li-subj">서강대 앞 교촌치킨 시켜드실 분</div>
+        				<div class="li-member">2/5</div>
+        				<div class="li-date">2월 3일 금 18시까지</div>
+            			</div>
+            			<div>
+            				<h1 class="icon icon-line">선 긋기</h1>
+            			</div>
 
-			<div class="d-gr li-gr list-cl" onclick="location.href='detail'">
-				나중에 전체를 div로 묶어서 main으로 크게 묶기
-				<div class="li-pic b-rad-1">사진</div>
-				<div class="li-categ header-categ li-header-categ">딜리버리 푸드</div>
-				<div class="li-heart icon icon-heart">찬하트</div>
-				<div class="li-subj">서강대 앞 교촌치킨 시켜드실 분</div>
-				<div class="li-member">2/5</div>
-				<div class="li-date">2월 3일 금 18시까지</div>
-			</div>
-			<div>
-				<h1 class="icon icon-line">선 긋기</h1>
-			</div> -->
+                        			<div class="d-gr li-gr list-cl" onclick="location.href='detail'">
+                        				나중에 전체를 div로 묶어서 main으로 크게 묶기
+                        				<div class="li-pic b-rad-1">사진</div>
+                        				<div class="li-categ header-categ li-header-categ">딜리버리 푸드</div>
+                        				<div class="li-heart icon icon-heart">찬하트</div>
+                        				<div class="li-subj">서강대 앞 교촌치킨 시켜드실 분</div>
+                        				<div class="li-member">2/5</div>
+                        				<div class="li-date">2월 3일 금 18시까지</div>
+                        			</div>
+                        			<div>
+                        				<h1 class="icon icon-line">선 긋기</h1>
+                        			</div> -->
         </main>
 
         <nav class="navi-bar d-fl-jf" style="display: none;">

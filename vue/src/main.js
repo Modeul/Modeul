@@ -1,6 +1,8 @@
-import App from './App.vue'
-import { createApp } from 'vue'
-import { createRouter, createWebHashHistory} from 'vue-router'
+import App from './App.vue';
+import { createApp } from 'vue';
+import { createRouter, createWebHashHistory} from 'vue-router';
+
+import Test from './views/Test.vue';
 
 import Index from './views/Index.vue';
 import Login from './views/Login.vue';
@@ -10,6 +12,9 @@ import Reg from './views/member/stuff/Reg.vue';
 import Datail from './views/member/stuff/Detail.vue';
 
 const routes = [
+    { path: '/test', component: Test},
+
+
     { path: '/index', component: Index},
     { path: '/login', component: Login},
     { path: '/signup', component: SignUp},
@@ -22,7 +27,7 @@ const routes = [
 const router = createRouter({
     history: createWebHashHistory(),
     routes
-})
+});
 
 const app = createApp(App)
 app.use(router)

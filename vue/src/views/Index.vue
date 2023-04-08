@@ -2,6 +2,10 @@
 @import url('/src/assets/css/component/component-index.css');
 </style>
 
+<script>
+
+</script>
+
 <template>
     <div class="canvas">
         <header>
@@ -16,7 +20,7 @@
             <div class="main-container">
                 <h1 class="d-none">바디</h1>
                 <p>
-                <h2 class="title">우리 동네 공구 마켓</h2><br>
+                <h2 class="title">우리 동네 공구 마켓 vue</h2><br>
                 <span class="text">
                     모들은 이웃 주민들과<br>
                     물건을 함께 구매하는 마켓이에요<br>

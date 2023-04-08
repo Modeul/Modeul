@@ -2,10 +2,11 @@ package com.modeul.web.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.System.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.modeul.web.entity.ImageVO;
-import com.modeul.web.entity.StuffVO;
-import com.modeul.web.entity.StuffViewDTO;
+import com.modeul.web.entity.StuffDTO;
+import com.modeul.web.entity.StuffView;
 import com.modeul.web.repository.StuffRepository;
 
 @Service
@@ -26,11 +26,11 @@ public class DefaultStuffService implements StuffService {
 
 	@Transactional
 	@Override
-	public int regStuff(StuffVO stuffVO) {
+	public int regStuff(StuffDTO stuffDTO) {
 
-		repository.insert(stuffVO);
+		repository.insert(stuffDTO.getStuff());
 
-		Boolean firstFileName = stuffVO.getImageList().get(0).getOriginalFilename().equals("");
+		Boolean firstFileName = stuffDTO.getImageList().get(0).getOriginalFilename().equals("");
 
 		if (firstFileName)
 			return 0;
@@ -51,7 +51,7 @@ public class DefaultStuffService implements StuffService {
 			uploadPath.mkdirs();
 		}
 		
-		for(MultipartFile image : stuffVO.getImageList()) {
+		for(MultipartFile image : stuffDTO.getImageList()) {
 			
 			String uploadFileName = image.getOriginalFilename();
 			
@@ -71,9 +71,12 @@ public class DefaultStuffService implements StuffService {
 				e.printStackTrace();
 			}
 			
-			ImageVO imageVO = new ImageVO(uploadFileName, stuffVO.getId());
+			Map<String, Object> imageMap = new HashMap<>();
 			
-			repository.insertImage(imageVO);
+			imageMap.put("uploadFileName", uploadFileName);
+			imageMap.put("stuffId", stuffDTO.getStuff().getId());
+
+			repository.insertImage(imageMap);
 			
 		}
 
@@ -81,7 +84,7 @@ public class DefaultStuffService implements StuffService {
 	}
 
 	@Override
-	public List<StuffViewDTO> getViewList() {
+	public List<StuffView> getViewList() {
 		return repository.findViewAll();
 	}
 }

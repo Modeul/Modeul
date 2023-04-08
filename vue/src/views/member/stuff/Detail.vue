@@ -1,8 +1,6 @@
 <style>
-@import url('/src/assets/css/component/member/stuff/component-detail.css');
+@import url('../../../assets/css/component/member/stuff/component-detail.css');
 </style>
-
-<script type="text/javascript" src="../../../assets/js/member/stuff/reg.js"></script>
 
 <template>
     <!-- detail : flex-container -->
@@ -17,12 +15,12 @@
             <div class="detail-main">
                 <!-- detail-img : detail-main - item1 -->
                 <div class="detail-img">
-                    <img src="../../../../images/member/stuff/chick.jpg" alt="img">
+                    <img src="../../../assets/images/member/stuff/chick.jpg" alt="img">
 
                     <!-- image : modal -->
                     <div class="detail-modal">
 
-                        <div class="icon-close" src="../../images/member/stuff/heart.png">&times;</div>
+                        <div class="icon-close" src="../../../assets/images/member/stuff/heart.png">&times;</div>
                         <!-- <img class="icon-close" src="../../images/member/stuff/heart.png"> -->
                         <img class="modal-img">
                     </div>

@@ -1,26 +1,25 @@
+
 package com.modeul.web.entity;
 
-import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Builder
+@Getter
+@Setter
 public class StuffDTO {
-	private String title;
-	private String place;
-	private int numPeople;
-	private String url;
-	private LocalDateTime deadline;
-	private String price;
-	private String content;
-	private int categoryId;
+	private List<MultipartFile> imageList;
+	private Stuff stuff;
 }

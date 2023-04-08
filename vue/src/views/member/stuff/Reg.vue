@@ -3,19 +3,43 @@
 </style>
 
 <script>
+export default {
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+        post() {
+
+            var formdata = new FormData(this.$refs.form);
+
+            var requestOptions = {
+                method: 'POST',
+                body: formdata,
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:8081/stuff", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+
+        }
+    }
+}
 
 </script>
 
-
-
 <template>
+
     <!-- =================== reg1 ======================= -->
-    <section class="reg1-form">
+    <!-- <section class="reg1-form">
         <h1 class="d-none">reg1</h1>
 
-        <section class="canvas-1 d-fl fl-dir-col">
+        <section class="canvas-1 d-fl fl-dir-col"> -->
             <!-- =================== reg1 : header ===================== -->
-            <header class="d-fl">
+            <!-- <header class="d-fl">
 
                 <div>
                     <a href="list" class="icon icon-back">뒤로가기</a>
@@ -24,10 +48,10 @@
                 <div class="hd-title-box">
                     <h1 class="hd-title">카테고리 설정</h1>
                 </div>
-            </header>
+            </header> -->
 
             <!-- =================== reg1 : main ===================== -->
-            <main>
+            <!-- <main>
                 <div class="reg1-main-content">
                     <h1>지역 주민들과 어떤 물건을 같이 살까요?</h1>
                 </div>
@@ -43,10 +67,10 @@
             </main>
 
         </section>
-    </section>
+    </section> -->
 
     <!-- =================== reg2 ======================= -->
-    <section class="reg2-form d-none">
+    <section class="reg2-form"> <!-- d-none -->
         <h1 class="d-none">reg2</h1>
 
         <section class="canvas-1 d-fl fl-dir-col">
@@ -69,22 +93,22 @@
             <!-- =================== reg2 : main ===================== -->
             <main class="d-fl-jf m-b">
 
-                <!-- form method post로 수정하기! -->
-                <form action="reg" method="post" enctype="multipart/form-data">
+            <!-- form method post로 수정하기! -->
+            <form action="reg" method="post" enctype="multipart/form-data" ref="form">
 
-                    <div>
-                        <input type="submit" class="reg2-post" value="올리기">
-                    </div>
+                <div>
+                    <input type="submit" class="reg2-post" value="올리기" @click.prevent="post">
+                </div>
 
-                    <div class="file-box">
-                        <!-- 파일업로드 버튼 만드는 법 -->
-                        <input type="file" class="btn-file" id="file" name="imageList" multiple>
-                        <div class="btn-uploaded-files">파일업로드된 파일들1</div>
-                        <div class="btn-uploaded-files">파일업로드된 파일들2</div>
-                    </div>
+                <div class="file-box">
+                    <!-- 파일업로드 버튼 만드는 법 -->
+                    <input type="file" class="btn-file" id="file" name="imageList" multiple>
+                    <div class="btn-uploaded-files">파일업로드된 파일들1</div>
+                    <div class="btn-uploaded-files">파일업로드된 파일들2</div>
+                </div>
 
-                    <!-- 기존 카테고리 -->
-                    <select class="category-box" name="categoryId">
+                <!-- 기존 카테고리 -->
+                    <select class="category-box" name="stuff.categoryId">
                         <option class="" value="1">일반상품</option>
                         <option class="" value="3">대형마트 대량 물품</option>
                         <option class="" value="2">딜리버리 푸드</option>
@@ -93,7 +117,7 @@
                     <!-- 가로 스크롤 수정하기 -->
                     <div class="select-box">
                         <label for="title" class="input-field-txt">제목</label>
-                        <input type="text" class="input-field" id="title" name="title">
+                        <input type="text" class="input-field" id="title" name="stuff.title">
                     </div>
 
 
@@ -101,21 +125,21 @@
                         <label for="" class="input-field-txt">인원</label>
                         <div class="people-count-box">
                             <input class="btn-minus" id="people-count" type="button" onclick='count("minus")' value="">
-                            <input type="text" class="people-count-num" name="numPeople" id="result" value=2>
+                            <input type="text" class="people-count-num" name="stuff.numPeople" id="result" value=2>
 
-                            <input class="btn-plus" id="people-count" type="button" onclick='count("plus")' value="">
-                        </div>
+                        <input class="btn-plus" id="people-count" type="button" onclick='count("plus")' value="">
+                    </div>
                     </div>
 
                     <!-- 인원수 조절 JS -->
-                    <!-- <script>
+                <!-- <script>
 >>>>>>> branch 'dev2' of https://github.com/Modeul/Modeul.git
                         function count(type)  {
-                          // 결과를 표시할 element
-                          const resultElement = document.getElementById('result');
-                          // 현재 화면에 표시된 값
-                          let number = resultElement.innerText;
-                          // 더하기/빼기
+                              // 결과를 표시할 element
+                              const resultElement = document.getElementById('result');
+                              // 현재 화면에 표시된 값
+                              let number = resultElement.innerText;
+                              // 더하기/빼기
                           if(type === 'plus') {
                             number = parseInt(number) + 1;
                           }else if(type === 'minus')  {
@@ -124,89 +148,89 @@
                           // 결과 출력
                           resultElement.innerText = number;
                         }
-                        </script> -->
+                            </script> -->
 
-                    <div id="btn-date" class="select-box d-fl jf-sb">
-                        <label for="datetime-local" class="input-field-txt">마감시간</label>
-                        <input class="date-pic"
-                            type="datetime-local" data-placeholder="날짜를 선택해주세요." aria-required="true" value={startDateValue}
-                            className={styles.selectDay} onChange={StartDateValueHandler} name="deadline">
-                    </div>
-                    <div class="select-box">
-                        <label for="price" class="input-field-txt">가격</label> <input type="text" class="input-field"
-                            name="price" id="price">
-                    </div>
-                    <!-- required 속성: 해당 필드가 기재되었을 때만 submit 가능. -->
-
-
+                <div id="btn-date" class="select-box d-fl jf-sb">
+                    <label for="datetime-local" class="input-field-txt">마감시간</label>
+                    <input class="date-pic" type="datetime-local" data-placeholder="날짜를 선택해주세요." aria-required="true"
+                        value={startDateValue} className={styles.selectDay} onChange={StartDateValueHandler}
+                        name="stuff.deadline">
+                </div>
+                <div class="select-box">
+                    <label for="price" class="input-field-txt">가격</label> <input type="text" class="input-field"
+                        name="stuff.price" id="price">
+                </div>
+                <!-- required 속성: 해당 필드가 기재되었을 때만 submit 가능. -->
 
 
-                    <!-- 복구용 코드(인원수) -->
-                    <!-- <div class="select-box">
+
+
+                <!-- 복구용 코드(인원수) -->
+                <!-- <div class="select-box">
                         <label for="people-count" class="input-field-txt">인원수</label>
                         <input type="text" class="input-field" id="people-count">
                     </div> -->
 
-                    <!-- 복구용 코드(날짜선택) -->
-                    <!-- <label for="date" class="input-field-txt">날짜</label>
+                <!-- 복구용 코드(날짜선택) -->
+                <!-- <label for="date" class="input-field-txt">날짜</label>
                         <input type="datetime-local" id="date" class="input-field2" name="date-start"
                         value="2023-02-26"
-                        min="2020-01-01" max="2025-12-31"> -->
+                            min="2020-01-01" max="2025-12-31"> -->
 
 
                     <!-- 모달 추가 -->
                     <!-- 모달 html -->
                     <!-- <div class="select-box btn-open-popup">모달 띄우기</div>
-                    <div class="modal">
-                        <div class="modal_body">
-                            날짜선택
-                            <input type="datetime-local" id="date" class="input-field2" name="date-start"
-                            value="2023-02-26"
-                            min="2020-01-01" max="2025-12-31">
-                        </div>
-                      </div> -->
+                        <div class="modal">
+                            <div class="modal_body">
+                                날짜선택
+                                <input type="datetime-local" id="date" class="input-field2" name="date-start"
+                                value="2023-02-26"
+                                min="2020-01-01" max="2025-12-31">
+                            </div>
+                          </div> -->
                     <!-- 모달 JS -->
                     <!-- <script>
-                        const body = document.querySelector('body');
-                        const modal = document.querySelector('.modal');
-                        const btnOpenPopup = document.querySelector('.btn-open-popup');
-                        //classList 사용은 공백으로 구분된 문자열인 element.className을 통해 
-                        //엘리먼트의 클래스 목록에 접근하는 방식을 대체하는 간편한 방법이다.
-                        //Element.className : 특정 엘리먼트의 클래스 속성의 값을 가져오거나 설정할 수 있다.
-                        btnOpenPopup.addEventListener('click', () => {
-                          modal.classList.toggle('show'); //하나의 인수만 있을 때: 클래스 값을 토글링한다. 즉, 클래스가 존재한다면 제거하고 false를 반환하며, 
-                                                          //존재하지 않으면 클래스를 추가하고 true를 반환한다.
+                            const body = document.querySelector('body');
+                            const modal = document.querySelector('.modal');
+                            const btnOpenPopup = document.querySelector('.btn-open-popup');
+                            //classList 사용은 공백으로 구분된 문자열인 element.className을 통해 
+                            //엘리먼트의 클래스 목록에 접근하는 방식을 대체하는 간편한 방법이다.
+                            //Element.className : 특정 엘리먼트의 클래스 속성의 값을 가져오거나 설정할 수 있다.
+                            btnOpenPopup.addEventListener('click', () => {
+                              modal.classList.toggle('show'); //하나의 인수만 있을 때: 클래스 값을 토글링한다. 즉, 클래스가 존재한다면 제거하고 false를 반환하며, 
+                                                              //존재하지 않으면 클래스를 추가하고 true를 반환한다.
                           
-                          if (modal.classList.contains('show')) { // 지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인한다.
-                            body.style.overflow = 'hidden'; // 'show'가 존재한다면 body에서 스크롤 불가.
-                          }
-                        });
+                              if (modal.classList.contains('show')) { // 지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인한다.
+                                body.style.overflow = 'hidden'; // 'show'가 존재한다면 body에서 스크롤 불가.
+                              }
+                            });
                   
-                        modal.addEventListener('click', (event) => {
-                          if (event.target === modal) { // .modal 영역을 클릭했다면
-                            modal.classList.toggle('show'); // 'show'를 다시 토글(클래스를 제거하고 false를 반환함)
+                            modal.addEventListener('click', (event) => {
+                              if (event.target === modal) { // .modal 영역을 클릭했다면
+                                modal.classList.toggle('show'); // 'show'를 다시 토글(클래스를 제거하고 false를 반환함)
                   
-                            if (!modal.classList.contains('show')) { // modal의 클래스에 'show'가 존재하지 않는다면
-                              body.style.overflow = 'auto'; // body에서 스크롤이 가능하도록 해라.
-                            }
-                          }
-                        });
-                    </script> -->
+                                if (!modal.classList.contains('show')) { // modal의 클래스에 'show'가 존재하지 않는다면
+                                  body.style.overflow = 'auto'; // body에서 스크롤이 가능하도록 해라.
+                                }
+                              }
+                            });
+                        </script> -->
 
 
                     <div class="select-box">
                         <label for="place" class="input-field-txt">장소</label> <input type="text" class="input-field"
-                            id="place" name="place">
+                            id="place" name="stuff.place">
                     </div>
 
                     <div class="select-box">
                         <label for="url" class="input-field-txt">링크</label> <input type="text" class="input-field" id="url"
-                            name="url">
+                            name="stuff.url">
                     </div>
 
                     <div class="select-box select-content d-fl fl-dir-col">
                         <label for="content" class="input-field-txt2">내용</label>
-                        <textarea class="input-field input-content" name="content" id="content" cols="30"
+                        <textarea class="input-field input-content" name="stuff.content" id="content" cols="30"
                             rows="10"></textarea>
                     </div>
                 </form>
