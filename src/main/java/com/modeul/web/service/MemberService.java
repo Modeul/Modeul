@@ -6,7 +6,7 @@ import com.modeul.web.entity.Member;
 
 public interface MemberService{
 	
-	int addMember();
+	int addMember(Member member);
 	List<Member> getMemberAll();
 //	int findUidDuplicate();
 	

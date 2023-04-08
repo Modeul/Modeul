@@ -8,7 +8,7 @@ import com.modeul.web.entity.Member;
 
 @Mapper
 public interface MemberRepository{
-	int insert();
+	int insert(Member member);
 	Member findMemberById();
 	List<Member> findMemberAll();
 //	int findUidDuplicate();

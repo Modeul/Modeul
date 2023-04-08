@@ -1,33 +1,30 @@
 package com.modeul.web.controller.api;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.modeul.web.entity.Category;
 import com.modeul.web.entity.Image;
+import com.modeul.web.entity.Member;
 import com.modeul.web.entity.Stuff;
 import com.modeul.web.entity.StuffView;
 import com.modeul.web.service.CategoryService;
 import com.modeul.web.service.ImageService;
+import com.modeul.web.service.MemberService;
 import com.modeul.web.service.StuffService;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 @RestController("apiStuffController")
-@RequestMapping("stuffs")
+@RequestMapping("member/stuffs")
 public class StuffController{
 	
 	@Autowired
@@ -36,11 +33,21 @@ public class StuffController{
 	public CategoryService categoryService;
 	@Autowired
 	public ImageService imageService;
+	@Autowired
+	public MemberService memberService;
+
 
 	@GetMapping("reg")
 	public String stuffForm() {
 		return "member/stuff/reg";
 	}
+
+	@PostMapping("signup")
+	public void signUp(@RequestBody Member member){
+		memberService.addMember(member);
+		System.out.println("회원가입 서비스 실행");
+	}
+
 	@PostMapping
 	public void insert(@RequestBody Stuff stuff, @RequestParam MultipartFile[] uploadfile) {
 		System.out.println("파일 이름 : " + uploadfile[0].getOriginalFilename());
@@ -112,7 +119,7 @@ public class StuffController{
 		// return "member/stuff/list";
 		return list;
 	}
-	@GetMapping("category")
+	@GetMapping("categories")
 	public List<Category> getCategoryList(
 		@RequestParam(name = "c", required = false) Integer categoryId) {
 		
@@ -130,12 +137,12 @@ public class StuffController{
 	// }
 
 	@GetMapping("{id}")
-	public List<Stuff> detail(@PathVariable("id") Long id) {
+	public Stuff detail(@PathVariable("id") Long id) {
 		
-		List<Stuff> stufflist = service.getById2(id);
-		// String categoryName = categoryService.getNameById(stuff.getCategoryId());
-		System.out.println(stufflist);
-		return stufflist;
+		Stuff stuff = service.getById(id);
+		System.out.println(stuff);
+
+		return stuff;
 	}
 	
 }

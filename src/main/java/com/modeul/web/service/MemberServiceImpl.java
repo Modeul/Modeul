@@ -15,9 +15,9 @@ public class MemberServiceImpl implements MemberService{
 	MemberRepository repository;
 	
 	@Override
-	public int addMember() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addMember(Member member) {
+		repository.insert(member);
+		return 1;
 	}
 
 	@Override
