@@ -43,7 +43,8 @@ public class StuffController {
 			@RequestParam(name="c", required=false) Long categoryId
 			){
 		
-		List<StuffView> list = service.getViewAll(categoryId, page);
+//		List<StuffView> list = service.getViewAll(categoryId, page);
+		List<StuffView> list = service.getRecentViewList(categoryId, page);
 		
 		return list;
 	}
@@ -65,7 +66,7 @@ public class StuffController {
 		
 		Stuff stuff = service.getById(id);
 		
-		String categoryName = categoryService.getNameById(stuff.getId());
+//		String categoryName = categoryService.getNameById(stuff.getId());
 		
 		return stuff;
 	}
