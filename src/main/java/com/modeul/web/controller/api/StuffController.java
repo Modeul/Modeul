@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,11 +66,12 @@ public class StuffController {
 		
 		Stuff stuff = service.getById(id);
 		
-		String categoryName = categoryService.getNameById(stuff.getId());
+		//String categoryName = categoryService.getNameById(stuff.getId());
 		
 		return stuff;
 	}
 	
+	//게시글 작성 (등록)
 	@PostMapping
 	public String insert(@RequestBody Stuff stuff) {
 		
@@ -121,5 +123,8 @@ public class StuffController {
 		// service.regStuff(stuff);
 		return imageList;
 	}
+
+	// @DeleteMapping
+	// public String 
 		
 }

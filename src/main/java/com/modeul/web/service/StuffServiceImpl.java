@@ -41,7 +41,7 @@ public class StuffServiceImpl implements StuffService {
 		
 		return repository.findViewAll(query, null, null, null, size, offset);
 	}
-
+ 
 	@Override
 	public List<StuffView> getViewAll(Long categoryId, int page) {
 		int size = 10;
