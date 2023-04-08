@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -124,10 +124,11 @@ public class StuffController {
 
 	@PostMapping("upload")
 	public String regStuff(
-			@RequestParam MultipartFile[] imgs, MultipartHttpServletRequest request,
+			@RequestBody MultipartFile[] imgs, MultipartHttpServletRequest request,
 			@RequestParam(name="title") String title,
 			@RequestParam(name="place") String place,
 			@RequestParam(name="numPeople") String numPeople,
+			//@RequestParam(name="categoryId") String categoryId,
 			@RequestParam(name="deadline") LocalDateTime deadline,
 			@RequestParam(name="price") String price,
 			@RequestParam(name="url") String url,
@@ -135,8 +136,8 @@ public class StuffController {
 		
 		// System.out.println(insert);
 		
-		System.out.printf("title: %s, place: %s, numPeople :%s, date: %s, price: %s, url: %s, content: %s\n",
-				title, place, numPeople, deadline, price, url, content);
+		// System.out.printf("title: %s, place: %s, numPeople :%s, categoryId: %s,date: %s, price: %s, url: %s, content: %s\n",
+		// 		title, place, numPeople, categoryId, deadline, price, url, content);
 		
 		List<Image> imageList = new ArrayList<Image>();
 		
@@ -174,8 +175,8 @@ public class StuffController {
 			imageList.add(image);
 		}
 		
+		// Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, categoryId, imageList);
 		Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, imageList);
-		// stuff(title, place, numPeople, deadline, price, url, content, imageList);
 		
 		// 여기가 중요!!
 		// stuff.setImageList(imageList);	// 여기가 중요!!

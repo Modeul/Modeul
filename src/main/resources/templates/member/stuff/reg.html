@@ -84,10 +84,10 @@
                 <!-- form method post로 수정하기! -->
                 <!-- ajax에서는 form 태그만 남기고 다 날리기  -->
                 <!-- @submit라는 이벤트도 있따 !! -->
-                <form @submit.prevent="upload" method="post" enctype="multipart/form-data">
+                <form @submit.prevent="upload" method="post" enctype="multipart/form-data" ref="form">
         
                     <div>
-                        <input type="submit" class="reg2-post" value="올리기" >
+                        <input type="submit" class="reg2-post" value="올리기">
                     </div>
                     
                     <div class="file-box">
