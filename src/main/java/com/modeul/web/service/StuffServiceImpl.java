@@ -82,6 +82,13 @@ public class StuffServiceImpl implements StuffService {
 		
 		return repository.findbyId(id);
 	}
+
+	@Override
+	public List<StuffView> getRecentViewList(Long categoryId, int page) {
+		
+		int size = page * 7;
+		return repository.findViewAll(null, categoryId, "reg_date", "desc", size, 0);
+	}
 	
 	
 }

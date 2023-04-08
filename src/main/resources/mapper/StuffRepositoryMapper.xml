@@ -51,7 +51,7 @@
 		order by ${orderField} ${orderDir}		<!-- orderField랑 orderDir, limit, offset 값 필수라서 trim 안함 -->
 	</if>
 		
-	<if test="size != null and offset !=offset">
+	<if test="size != null and offset != null">
 		limit ${size} offset ${offset}
 	</if>
   </select>
