@@ -27,25 +27,25 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("signup")
-	public String createMember(
-			@RequestParam(name="uid") String uid,
-			@RequestParam(name="password") String password,
-			@RequestParam(name="name") String name,
-			@RequestParam(name="email") String email,
-			@RequestParam(name="nickname") String nickname) {
-			// @RequestParam은 Entity(Member)가 필요 없어도 된다. 
-		
-		int createMember = service.addMember(uid, password, name, email, nickname);
-		
-		System.out.printf("회원 등록 인원수 : ", createMember);
-		
-		System.out.printf("uid : %s, pw: %s, nickname: %s", uid, password, nickname);
-		
-		return "redirect:login";	
-		// redirect 개념 중요!
-		// 서버에서 처리해주기 때문
-	}
+//	@PostMapping("signup")
+//	public String addMember(
+//			@RequestParam(name="uid") String uid,
+//			@RequestParam(name="password") String password,
+//			@RequestParam(name="name") String name,
+//			@RequestParam(name="email") String email,
+//			@RequestParam(name="nickname") String nickname) {
+//			// @RequestParam은 Entity(Member)가 필요 없어도 된다. 
+//		
+//		int createMember = service.addMember(uid, password, name, email, nickname);
+//		
+//		System.out.printf("회원 등록 인원수 : ", createMember);
+//		
+//		System.out.printf("uid : %s, pw: %s, nickname: %s", uid, password, nickname);
+//		
+//		return "redirect:login";	
+//		// redirect 개념 중요!
+//		// 서버에서 처리해주기 때문
+//	}
 	
 
 }
