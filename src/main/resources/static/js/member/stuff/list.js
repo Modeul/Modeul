@@ -1,21 +1,21 @@
-window.addEventListener("load", function(){
+// window.addEventListener("load", function(){
 
-    var heartList = document.getElementsByClassName('icon-heart');
+//     var heartList = document.getElementsByClassName('icon-heart');
 
 
-    function heartClick(e) {
-        e.stopPropagation();
-        e.target.classList.toggle('icon-empty-heart');
-        e.target.classList.toggle('icon-full-heart');
-    }
+//     function heartClick(e) {
+//         e.stopPropagation();
+//         e.target.classList.toggle('icon-empty-heart');
+//         e.target.classList.toggle('icon-full-heart');
+//     }
 
-    for (var i = 0; i < heartList.length; i++) {
-        heartList[i].addEventListener("click", heartClick);
-    }
+//     for (var i = 0; i < heartList.length; i++) {
+//         heartList[i].addEventListener("click", heartClick);
+//     }
     
 
     
-});
+// });
 
 // 위에 있는 JS 이벤트 핸들러 Vue로 다 바꾸기!!** DOM과 Vue 중에서 우선 순위가 Vue.js이다. 
 // ================== Vue.js ============================================
