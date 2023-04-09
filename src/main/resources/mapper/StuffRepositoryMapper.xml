@@ -18,6 +18,7 @@
  <!--  StuffView는 원래 알던 개념 db 칼럼명과 일치시켜서 그 칼럼의 데이터 이용하게 한다.
  그리고 StuffView 이런 식으로 덩어리로 인자를 사용하면 resultMap으로 세부 칼럼들을 매핑 시켜줘야 한다. -->
   <resultMap id="stuffViewResultMap" type="StuffView">
+	<result property="imageName" column="image_name"/>
   	<result property="categoryId" column="category_id"/>
   	<result property="categoryName" column="category_name"/>
   	<result property="numPeople" column="num_people"/>
@@ -38,7 +39,7 @@
   #은 ''를 붙여서 SQL문에 값이 들어간다. --> 
   <select id="findViewAll" resultMap="stuffViewResultMap">
   	select *
-  	from stuff_view_jh
+  	from stuff_view
   	<trim prefix="WHERE" prefixOverrides="AND | OR">
   		<if test="query != null">
   			title like '%${query}%'
