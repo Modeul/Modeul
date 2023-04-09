@@ -22,7 +22,12 @@ public class CategoryServiceImpl implements CategoryService {
 	// Category 객체로부터 이름만 받기 위해서 getter 이용하기!
 	@Override
 	public String getNameById(Long categoryId) {
-		return repository.findNameById(categoryId).getName();
+		return repository.findById(categoryId).getName();
+	}
+
+	@Override
+	public Category getById(Long categoryId) {
+		return repository.findById(categoryId);
 	}
 	
 
