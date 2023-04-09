@@ -78,6 +78,21 @@
 			<optional>true</optional>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+
+		
 <!--		<dependency>-->
 <!--		    <groupId>ch.qos.logback</groupId>-->
 <!--		    <artifactId>logback-classic</artifactId>-->
