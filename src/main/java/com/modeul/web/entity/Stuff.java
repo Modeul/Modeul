@@ -47,6 +47,7 @@ public class Stuff {
 		this.price = price;
 		this.url = url;
 		this.content = content;
+		//this.categoryId = categoryId;
 		this.imageList = imageList;
 	}
 	

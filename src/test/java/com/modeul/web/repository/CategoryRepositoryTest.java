@@ -25,7 +25,7 @@ class CategoryRepositoryTest {
 	
 	@Test
 	void testfindNameById() {
-		Category categoryName = repository.findNameById(3L);
+		Category categoryName = repository.findById(3L);
 		System.out.println(categoryName);
 	}
 
