@@ -66,6 +66,7 @@ public class StuffServiceImpl implements StuffService {
 		int insertCount = repository.insert(stuff);
 		log.info("insertCount={}", insertCount);
 		
+		// 이미지 유효성 검사
 		if(stuff.getImageList() == null || stuff.getImageList().size() <= 0) {
 			return;
 		}

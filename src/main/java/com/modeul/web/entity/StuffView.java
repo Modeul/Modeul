@@ -20,4 +20,5 @@ public class StuffView extends Stuff {
 	
 	// 카테고리 이름이 필요하네..
 	private String categoryName;
+	private String imageName;
 }
