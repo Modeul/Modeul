@@ -134,6 +134,7 @@ public class StuffController {
 			// ArrayList에 add해서 Image 정보 넣기!
 			imageList.add(image);
 		}
+
 		
 		Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, imageList);
 		stuff.setImageList(imageList);
