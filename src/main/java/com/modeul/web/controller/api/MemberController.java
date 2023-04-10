@@ -47,7 +47,7 @@ public class MemberController {
 		return chk;
 	}
 	
-	@GetMapping("chekEmail")
+	@GetMapping("checkEmail")
 	public Boolean checkEmail (String email) {
 		
 		Boolean chk = service.checkEmail(email);
@@ -55,7 +55,7 @@ public class MemberController {
 		return chk;
 	}
 	
-	@GetMapping("chekNickname")
+	@GetMapping("checkNickname")
 	public Boolean checkNickname (String nickname) {
 		
 		Boolean chk = service.checkNickname(nickname);
