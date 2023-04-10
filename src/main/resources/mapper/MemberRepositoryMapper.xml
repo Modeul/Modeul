@@ -9,4 +9,28 @@
     insert into member(uid,pwd,name,email,nickname)
     values(#{uid},#{pwd},#{name},#{email},#{nickname})
   </insert>
+  
+   <select id="getbyUid" resultType="String">
+	  select uid
+	  from
+	  member
+	  where
+	  uid = #{uid}
+  </select>
+  
+  <select id="getByEmail" resultType="String">
+	  select email
+	  from
+	  member
+	  where
+	  email = #{email}
+  </select>
+  
+  <select id="getByNickname" resultType="String">
+	  select nickname
+	  from
+	  member
+	  where
+	  nickname = #{nickname}
+  </select>
 </mapper>

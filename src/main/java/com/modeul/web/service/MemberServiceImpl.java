@@ -17,6 +17,30 @@ public class MemberServiceImpl implements MemberService {
 	public int addMember(Member member) {
 		return repository.insert(member);
 	}
+	
+	@Override
+	public Boolean checkUid(String uid) {
+		String getUid = repository.getbyUid(uid);
+		Boolean result = (getUid != null) ? false : true;
+
+		return result;
+	}
+
+	@Override
+	public Boolean checkEmail(String email) {
+		String getEmail = repository.getByEmail(email);
+		Boolean result = (getEmail != null) ? false : true;
+
+		return result;
+	}
+
+	@Override
+	public Boolean checkNickname(String nickname) {
+		String getNickname = repository.getByNickname(nickname);
+		Boolean result = (getNickname != null) ? false : true;
+
+		return result;
+	}
 
 
 }

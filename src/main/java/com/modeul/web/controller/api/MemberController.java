@@ -1,6 +1,7 @@
 package com.modeul.web.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,31 @@ public class MemberController {
 		String code = mailService.sendConfirmMessage(email);
 		System.out.println("인증코드 : " + code);
 		return code;
+	}
+	
+	@GetMapping("checkUid")
+	public Boolean checkUid (String uid) {
+		
+
+		Boolean chk = service.checkUid(uid);
+		
+		return chk;
+	}
+	
+	@GetMapping("chekEmail")
+	public Boolean checkEmail (String email) {
+		
+		Boolean chk = service.checkEmail(email);
+		
+		return chk;
+	}
+	
+	@GetMapping("chekNickname")
+	public Boolean checkNickname (String nickname) {
+		
+		Boolean chk = service.checkNickname(nickname);
+		
+		return chk;
 	}
 
 
