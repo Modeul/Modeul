@@ -2,87 +2,89 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.modeul.web.repository.StuffRepository">
-<!-- mySQL에서 문자열은 ''로 묶여야 한다. 그래서 #{}으로 묶인다. -->
-  
-  <!-- resultMap이 필요한 이유는 Stuff 테이블에서 Java를 이용하면, categoryId으로 칼럼명이 쓰인다.
-  그 categoryId 칼럼은 한 번 더 Category 테이블로 건너가서 categoryName 칼럼을 이용하기 위해서는
-  resultMap을 사용하여 MySQL DB의 칼럼명으로 다시 매핑해줘야 한다. -->
-  <resultMap id="stuffResultMap" type="Stuff">
-  	<result property="numPeople" column="num_people"/>
-  	<result property="regDate" column="reg_date"/>
-  	<result property="categoryId" column="category_id"/>
-  	<result property="memberId" column="member_id"/>
-  </resultMap> 
- <!--  StuffView는 원래 알던 개념 db 칼럼명과 일치시켜서 그 칼럼의 데이터 이용하게 한다.
- 그리고 StuffView 이런 식으로 덩어리로 인자를 사용하면 resultMap으로 세부 칼럼들을 매핑 시켜줘야 한다. -->
-  <resultMap id="stuffViewResultMap" type="StuffView">
-	<result property="imageName" column="image_name"/>
-  	<result property="categoryId" column="category_id"/>
-  	<result property="categoryName" column="category_name"/>
-  	<result property="numPeople" column="num_people"/>
-  	<result property="memberId" column="member_id"/>
-  	<result property="regDate" column="reg_date"/>
-  </resultMap>
+	<!-- mySQL에서 문자열은 ''로 묶여야 한다. 그래서 #{}으로 묶인다. -->
 
-  <select id="findbyId" resultMap="stuffResultMap">
-  	select *
-  	from stuff
-  	where id = #{id}
-  </select>
-  
+	<!-- resultMap이 필요한 이유는 Stuff 테이블에서 Java를 이용하면, categoryId으로 칼럼명이 쓰인다. 그 
+		categoryId 칼럼은 한 번 더 Category 테이블로 건너가서 categoryName 칼럼을 이용하기 위해서는 resultMap을 
+		사용하여 MySQL DB의 칼럼명으로 다시 매핑해줘야 한다. -->
+	<resultMap id="stuffResultMap" type="Stuff">
+		<result property="numPeople" column="num_people" />
+		<result property="regDate" column="reg_date" />
+		<result property="categoryId" column="category_id" />
+		<result property="memberId" column="member_id" />
+	</resultMap>
+	<!-- StuffView는 원래 알던 개념 db 칼럼명과 일치시켜서 그 칼럼의 데이터 이용하게 한다. 그리고 StuffView 
+		이런 식으로 덩어리로 인자를 사용하면 resultMap으로 세부 칼럼들을 매핑 시켜줘야 한다. -->
+	<resultMap id="stuffViewResultMap" type="StuffView">
+		<result property="imageName" column="image_name" />
+		<result property="categoryId" column="category_id" />
+		<result property="categoryName" column="category_name" />
+		<result property="numPeople" column="num_people" />
+		<result property="memberId" column="member_id" />
+		<result property="regDate" column="reg_date" />
+	</resultMap>
 
-  <!-- VIEW 이용할 때, on 조건 중 id 뭐로 연결할 건지 다시 생각!
-  VIEW 테이블 자체는 조건절이 없었다. -->
-  <!--- MariaDB의 SQL문에 $는 '' 없이 SQL문에 값이 그냥 들어가고 
-  #은 ''를 붙여서 SQL문에 값이 들어간다. --> 
-  <select id="findViewAll" resultMap="stuffViewResultMap">
-  	select *
-  	from stuff_view
-  	<trim prefix="WHERE" prefixOverrides="AND | OR">
-  		<if test="query != null">
-  			title like '%${query}%'
-  		</if>
-  		<if test="categoryId != null">
-  			and category_id = #{categoryId}
-  		</if>
-  	</trim>
-	<if test="orderField != null and orderDir != null">
-		order by ${orderField} ${orderDir}		<!-- orderField랑 orderDir, limit, offset 값 필수라서 trim 안함 -->
-	</if>
-		
-	<if test="size != null and offset != null">
-		limit ${size} offset ${offset}
-	</if>
-  </select>
-  
-  <!-- selectKey, LAST_INSERT_ID() 찾기!! -->
-<!--   <insert id="insert" parameterType="Stuff">
-    insert into stuff(title, place, num_people, deadline, price, url, content)
-    values(#{title},#{place},#{numPeople},#{deadline},#{price},#{url},#{content})
-	
-	<selectKey resultType="long" keyProperty="id" order="AFTER">
-  
-  		select last_insert_id()
-  
-  	</selectKey>   
-  
-  </insert> -->
-  
-  <insert id="insert" parameterType="Stuff">
-    insert into stuff(title, place, num_people, deadline, price, url, content)
-    values(#{title},#{place},#{numPeople},#{deadline},#{price},#{url},#{content})
-	<selectKey resultType="long" keyProperty="id" order="AFTER">
-  
-  		select last_insert_id()
-  
-  	</selectKey>  	
-  </insert>
-  
-  <insert id="imageUpload" parameterType="Image">
-  	insert into image(name, stuff_id)
-  	values(#{name}, #{stuffId})
-  </insert>
-  
+	<select id="findbyId" resultMap="stuffResultMap">
+		select *
+		from stuff
+		where id = #{id}
+	</select>
+
+
+	<!-- VIEW 이용할 때, on 조건 중 id 뭐로 연결할 건지 다시 생각! VIEW 테이블 자체는 조건절이 없었다. -->
+	<!--- MariaDB의 SQL문에 $는 '' 없이 SQL문에 값이 그냥 들어가고 #은 ''를 붙여서 SQL문에 값이 들어간다. -->
+	<select id="findViewAll" resultMap="stuffViewResultMap">
+		select *
+		from stuff_view
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="query != null">
+				title like '%${query}%'
+			</if>
+			<if test="categoryId != null">
+				and category_id = #{categoryId}
+			</if>
+		</trim>
+		<if test="orderField != null and orderDir != null">
+			order by ${orderField} ${orderDir}		<!-- orderField랑 orderDir, limit, offset 
+				값 필수라서 trim 안함 -->
+		</if>
+
+		<if test="size != null and offset != null">
+			limit ${size} offset ${offset}
+		</if>
+	</select>
+
+	<select id="getCountList" resultType="Long">
+		select count(id)
+		from
+		stuff_view
+		<if test="categoryId != null">
+			where category_id = #{categoryId}
+		</if>
+	</select>
+
+	<!-- selectKey, LAST_INSERT_ID() 찾기!! -->
+	<!-- <insert id="insert" parameterType="Stuff"> insert into stuff(title, 
+		place, num_people, deadline, price, url, content) values(#{title},#{place},#{numPeople},#{deadline},#{price},#{url},#{content}) 
+		<selectKey resultType="long" keyProperty="id" order="AFTER"> select last_insert_id() 
+		</selectKey> </insert> -->
+
+	<insert id="insert" parameterType="Stuff">
+		insert into stuff(title, place, num_people, deadline, price, url,
+		content)
+		values(#{title},#{place},#{numPeople},#{deadline},#{price},#{url},#{content})
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+
+			select last_insert_id()
+
+		</selectKey>
+	</insert>
+
+	<insert id="imageUpload" parameterType="Image">
+		insert into image(name, stuff_id)
+		values(#{name}, #{stuffId})
+	</insert>
+
 </mapper>

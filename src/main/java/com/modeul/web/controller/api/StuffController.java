@@ -52,11 +52,13 @@ public class StuffController {
 		// 3중 조인 필수..
 		List<StuffView> list = service.getRecentViewList(categoryId, page);
 		List<Category> categoryList = categoryService.getList();
-
+		Long listCount = service.getListCount(categoryId, page);
+		
 		Map<String, Object> dataList = new HashMap<>();
 		dataList.put("list", list);
 		dataList.put("categoryList", categoryList);
-
+		dataList.put("listCount", listCount);
+		
 		return dataList;
 	}
 

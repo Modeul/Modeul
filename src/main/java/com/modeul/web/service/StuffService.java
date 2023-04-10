@@ -22,6 +22,9 @@ public interface StuffService {
 	Stuff getById(Long id);
 
 
+	Long getListCount(Long categoryId, int page);
+
+
 
 
 	

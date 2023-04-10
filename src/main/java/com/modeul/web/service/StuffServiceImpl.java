@@ -90,6 +90,16 @@ public class StuffServiceImpl implements StuffService {
 		int size = page * 7;
 		return repository.findViewAll(null, categoryId, "reg_date", "desc", size, 0);
 	}
+
+	@Override
+	public Long getListCount(Long categoryId, int page) {
+		
+		Long countList = repository.getCountList(categoryId) - (page * 7);
+		Long result = countList <= 0 ? 0 : countList;
+		return result;
+	}
+
+
 	
 	
 }
