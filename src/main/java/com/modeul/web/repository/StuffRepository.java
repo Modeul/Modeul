@@ -39,5 +39,7 @@ public interface StuffRepository {
 	
 	int imageUpload(String name, Long stuffId);
 
-	
+	int update(Stuff stuff);
+
+	void delete(Long id);
 }

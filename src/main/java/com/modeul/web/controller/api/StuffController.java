@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,13 +62,13 @@ public class StuffController {
 		return dataList;
 	}
 
-	// @GetMapping("categories")
-	// public List<Category> getCategoryList(){
+	@GetMapping("categories")
+	public List<Category> getCategoryList(){
 		
-	// 	List<Category> categoryList = categoryService.getList();
+		List<Category> categoryList = categoryService.getList();
 		
-	// 	return categoryList;
-	// }
+		return categoryList;
+	}
 
 	@GetMapping("{id}")
 	public Map<String, Object> get(
@@ -131,17 +133,14 @@ public class StuffController {
 			img.transferTo(new File(realPath));
 			System.out.printf("%s", realPath);
 			
-			
 			// 그 이미지를 DB에 저장하기!!** 
 			Image image = new Image();
 			image.setName(img.getOriginalFilename());
 
-			
 			// ArrayList에 add해서 Image 정보 넣기!
 			imageList.add(image);
 		}
 
-		
 		Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, imageList);
 		stuff.setImageList(imageList);
 
@@ -151,4 +150,82 @@ public class StuffController {
 		return "ok";
 	}
 		
+	@PutMapping("{id}")
+	public String updateStuff(
+			@RequestBody MultipartFile[] imgs, MultipartHttpServletRequest request,
+			@RequestParam(name="title") String title,
+			@RequestParam(name="place") String place,
+			@RequestParam(name="numPeople") String numPeople,
+			//@RequestParam(name="categoryId") String categoryId,
+			@RequestParam(name="deadline") LocalDateTime deadline,
+			@RequestParam(name="price") String price,
+			@RequestParam(name="url") String url,
+			@RequestParam(name="content") String content) throws IllegalStateException, IOException {
+		
+		// System.out.printf("title: %s, place: %s, numPeople :%s, categoryId: %s,date: %s, price: %s, url: %s, content: %s\n",
+		// 		title, place, numPeople, categoryId, deadline, price, url, content);
+		
+		List<Image> imageList = new ArrayList<Image>();
+		
+		// 파일 여러 개 받기  
+		for(int i=0; i<imgs.length; i++) {
+			MultipartFile img = imgs[i];
+			
+			// 파일 업로드가 안될 시, 예외 처리
+			if(img.isEmpty())
+				continue;
+			
+			// 파일 경로 알아 내기(논리적, 물리적)** : urlPath, realPath 
+			String urlPath = "/images/member/stuff/" + img.getOriginalFilename();
+			String realPath = request.getServletContext().getRealPath(urlPath);
+			
+			System.out.printf("%s", realPath);
+			
+			// 물리 경로에 폴더가 없으면, 폴더도 생성
+			File savePath = new File(realPath);
+			
+			if(!savePath.exists()) 
+				savePath.mkdirs();
+			
+			// 그 물리적 경로로 파일 저장하는 방법**
+			img.transferTo(new File(realPath));
+			System.out.printf("%s", realPath);
+			
+			// 그 이미지를 DB에 저장하기!!** 
+			Image image = new Image();
+			image.setName(img.getOriginalFilename());
+
+			// ArrayList에 add해서 Image 정보 넣기!
+			imageList.add(image);
+		}
+
+
+		Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, imageList);
+		stuff.setImageList(imageList);
+
+		System.out.println(stuff);
+		service.updateStuff(stuff);
+		
+		return "ok";
+	}
+
+	// @PutMapping("{id}")
+	// public String updateStuff(
+	// 	@PathVariable("id") Long id){
+	// 		service.updateStuff(id);
+	// 		return "menu edit";
+	// 	}
+	
+
+	@DeleteMapping("{id}")
+	public String deleteStuff(
+			@PathVariable("id") Long id){
+				service.deleteStuff(id);
+		return "menu del:";		
+	}
+	
+	
+
+	
+
 }

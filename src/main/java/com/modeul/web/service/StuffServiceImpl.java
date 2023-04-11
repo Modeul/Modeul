@@ -90,6 +90,22 @@ public class StuffServiceImpl implements StuffService {
 		int size = page * 7;
 		return repository.findViewAll(null, categoryId, "reg_date", "desc", size, 0);
 	}
+
+	@Override
+	public void updateStuff(Stuff stuff){
+
+		repository.update(stuff);
+	}
+
+	@Override
+	public void deleteStuff(Long id) {
+		
+		repository.delete(id);
+	}
 	
 	
+	
+
+
+
 }

@@ -84,5 +84,21 @@
   	insert into image(name, stuff_id)
   	values(#{name}, #{stuffId})
   </insert>
+
+  <update id="update" parameterType="Stuff">
+		update Stuff 
+		<!-- <trim prefix="SET" suffixOverrides=",">
+			<if test="name != null">name=#{name},</if>
+			<if test="price != null">price=#{price},</if>
+			<if test="img != null">img=#{img}</if>
+		</trim> -->
+		where id=#{id}
+	</update>
   
+  <delete id="delete" parameterType="Stuff">
+		delete from stuff where id=${id}
+	</delete>
+
+
+
 </mapper>
