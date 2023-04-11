@@ -30,7 +30,7 @@ public class Stuff {
 	private String price;
 	private String content;
 	private Long memberId;
-	private long categoryId;
+	private Long categoryId;
 	
 	// 이미지 파일 업로드 용!
 	private List<Image> imageList;
@@ -38,7 +38,7 @@ public class Stuff {
 	// insert용
 	public Stuff(String title, String place, String numPeople, 
 			LocalDateTime deadline, String price, String url,
-			String content, List<Image> imageList) {
+			String content, Long categoryId, List<Image> imageList) {
 		
 		this.title = title;
 		this.place = place;
@@ -47,7 +47,7 @@ public class Stuff {
 		this.price = price;
 		this.url = url;
 		this.content = content;
-		//this.categoryId = categoryId;
+		this.categoryId = categoryId;
 		this.imageList = imageList;
 	}
 	
