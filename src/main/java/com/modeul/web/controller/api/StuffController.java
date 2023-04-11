@@ -85,6 +85,19 @@ public class StuffController {
 
 		return data;
 	}
+
+	// @GetMapping("{categoryId}")
+	// public Map<String, Object> getcategoryList(
+	// 		@PathVariable("categoryId") long categoryId,
+	// 		@RequestParam(name="p", defaultValue = "1") int page){
+		
+	// 	List<StuffView> stuff = service.getViewAll(categoryId , page);
+
+	// 	Map<String, Object> data = new HashMap<>();
+	// 	data.put("stuff",stuff);
+
+	// 	return data;
+	// }
 	
 	// ======================== 추후에 카테고리 Id 추가 ===========================
 	

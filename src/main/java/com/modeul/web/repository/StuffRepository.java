@@ -21,7 +21,7 @@ public interface StuffRepository {
 								String orderDir,
 								Integer size, 
 								Integer offset);
-	
+
 	Stuff findbyId(Long id);
 	
 	// 이것을 Member로 받아도 된다. 단, 생성자를 따로 만들어주어야 한다. 
