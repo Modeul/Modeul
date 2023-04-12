@@ -51,5 +51,20 @@ public class Stuff {
 		this.imageList = imageList;
 	}
 	
+	// update용
+	public Stuff(String title, String place, String numPeople, 
+	LocalDateTime deadline, String price, String url,
+	String content, List<Image> imageList, Long categoryId, Long id) {
 	
+	this.title = title;
+	this.place = place;
+	this.numPeople = numPeople;
+	this.deadline = deadline;
+	this.price = price;
+	this.url = url;
+	this.content = content;
+	this.imageList = imageList;
+	this.categoryId = categoryId;
+	this.id = id;
+}
 }

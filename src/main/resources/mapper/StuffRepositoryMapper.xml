@@ -71,6 +71,7 @@
 		<selectKey resultType="long" keyProperty="id" order="AFTER"> select last_insert_id() 
 		</selectKey> </insert> -->
 
+	<!-- 공구상품글 등록  -->
 	<insert id="insert" parameterType="Stuff">
 		insert into stuff(title, place, num_people, deadline, price, url,
 		content, category_id)
@@ -82,9 +83,21 @@
 		</selectKey>
 	</insert>
 
+	
 	<insert id="imageUpload" parameterType="Image">
 		insert into image(name, stuff_id)
 		values(#{name}, #{stuffId})
 	</insert>
 
+	<!-- 상품 정보 수정, 나중에 categoryId 추가하기!! -->
+	<update id="update" parameterType="Stuff">
+		update stuff set title = #{title}, place = #{place}, num_people = #{numPeople}, deadline = #{deadline}, price = #{price}, 
+		url = #{url}, content = #{content}, category_id = #{categoryId}
+		where id = #{id}
+	</update>
+
+	<!-- 지정 공구상품 이미지 전체 삭제 --> 	
+	<delete id="deleteImage" >			
+		delete from image where stuff_id = #{stuffId}		
+	</delete>
 </mapper>
