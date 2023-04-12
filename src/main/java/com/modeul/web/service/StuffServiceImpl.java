@@ -12,7 +12,7 @@ import com.modeul.web.repository.StuffRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @Service
 public class StuffServiceImpl implements StuffService {
 	
@@ -64,7 +64,7 @@ public class StuffServiceImpl implements StuffService {
 	public void regStuff(Stuff stuff) {
 
 		int insertCount = repository.insert(stuff);
-		log.info("insertCount={}", insertCount);
+		System.out.printf("inserCount: %d",insertCount); 
 		
 		// 이미지 유효성 검사
 		if(stuff.getImageList() == null || stuff.getImageList().size() <= 0) {
@@ -100,6 +100,22 @@ public class StuffServiceImpl implements StuffService {
 	}
 
 
-	
+	/* 공구상품 정보 수정 */
+	@Transactional
+	@Override
+	public int editStuff(Stuff stuff) {
+
+		int updateCount = repository.update(stuff);
+		
+		if(updateCount == 1 && stuff.getImageList() != null && stuff.getImageList().size() > 0) {
+			repository.deleteImage(stuff.getId());
+			
+			stuff.getImageList().forEach(image -> {
+				image.setStuffId(stuff.getId());
+				repository.imageUpload(image.getName(), image.getStuffId());
+			});
+		}
+		return updateCount;
+	}
 	
 }

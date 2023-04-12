@@ -37,9 +37,16 @@ public interface StuffRepository {
 	
 	int insert(Stuff stuff);
 	
+	/* 공구상픔 이미지 등록 */
 	int imageUpload(String name, Long stuffId);
 
 	Long getCountList(Long categoryId);
 
+	/* 공구상품 수정 */
+	int update(Stuff stuff);	
 	
+	/* 공구상품 정보 삭제 */
+	int deleteImage(Long stuffId);
+	
+
 }
