@@ -10,9 +10,7 @@ import com.modeul.web.entity.Stuff;
 import com.modeul.web.entity.StuffView;
 import com.modeul.web.repository.StuffRepository;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 public class StuffServiceImpl implements StuffService {
 	
@@ -64,7 +62,7 @@ public class StuffServiceImpl implements StuffService {
 	public void regStuff(Stuff stuff) {
 
 		int insertCount = repository.insert(stuff);
-		log.info("insertCount={}", insertCount);
+		System.out.printf("inserCount: %d",insertCount); 
 		
 		// 이미지 유효성 검사
 		if(stuff.getImageList() == null || stuff.getImageList().size() <= 0) {
@@ -92,17 +90,36 @@ public class StuffServiceImpl implements StuffService {
 	}
 
 	@Override
-	public void updateStuff(Stuff stuff){
-
-		repository.update(stuff);
-	}
-
-	@Override
 	public void deleteStuff(Long id) {
 		
 		repository.delete(id);
 	}
 	
+	public Long getListCount(Long categoryId, int page) {
+		
+		Long countList = repository.getCountList(categoryId) - (page * 7);
+		Long result = countList <= 0 ? 0 : countList;
+		return result;
+	}
+
+
+	/* 공구상품 정보 수정 */
+	@Transactional
+	@Override
+	public int editStuff(Stuff stuff) {
+
+		int updateCount = repository.update(stuff);
+		
+		if(updateCount == 1 && stuff.getImageList() != null && stuff.getImageList().size() > 0) {
+			repository.deleteImage(stuff.getId());
+			
+			stuff.getImageList().forEach(image -> {
+				image.setStuffId(stuff.getId());
+				repository.imageUpload(image.getName(), image.getStuffId());
+			});
+		}
+		return updateCount;
+	}
 	
 	
 

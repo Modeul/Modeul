@@ -7,5 +7,11 @@ public interface MemberService {
 
 	int addMember(Member member);
 	
+	Boolean checkUid(String uid);
+
+	Boolean checkEmail(String email);
+
+	Boolean checkNickname(String nickname);
+	
 }
 

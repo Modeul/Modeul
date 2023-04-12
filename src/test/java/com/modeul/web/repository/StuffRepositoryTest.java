@@ -19,7 +19,7 @@ class StuffRepositoryTest {
 	
 	@Autowired
 	private StuffRepository repository;
-	
+
 	// Stuff 등록하기
 	@Test
 	void testinsert() {

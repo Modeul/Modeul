@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class StuffView extends Stuff {
 	private Long memberId;
-	private long categoryId;
+	private Long categoryId;
 	
 	// 카테고리 이름이 필요하네..
 	private String categoryName;

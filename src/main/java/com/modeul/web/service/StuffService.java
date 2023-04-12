@@ -20,8 +20,14 @@ public interface StuffService {
 	
 	Stuff getById(Long id);
 
-	void updateStuff(Stuff stuff);
+
 
 	void deleteStuff(Long id);
+	Long getListCount(Long categoryId, int page);
+
+
+	int editStuff(Stuff stuff);
+
+	
 
 }
