@@ -25,8 +25,14 @@ public class ImageServiceImpl implements ImageService{
 	}
 
 	@Override
-	public List<Image> getList() {
-		return repository.findAll();
+	public List<Image> getListById(Long stuffId) {
+		
+		return repository.findListById(stuffId);
 	}
+
+	// @Override
+	// public List<Image> getList() {
+	// 	return repository.findAll();
+	// }
 
 }

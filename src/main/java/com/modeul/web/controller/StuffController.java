@@ -94,7 +94,7 @@ public class StuffController {
 		return "member/stuff/list-search";
 	}
 	
-	
+
 	@GetMapping("reg")
 	public String stuffForm() {
 		return "member/stuff/reg";
