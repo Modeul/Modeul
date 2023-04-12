@@ -27,6 +27,6 @@ public interface StuffService {
 
 	int editStuff(Stuff stuff);
 
-	
+	void deleteStuff(Long id);
 
 }

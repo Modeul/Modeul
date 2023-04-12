@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,7 +91,7 @@ public class StuffController {
 	// post 요청은 먼저 JS로 와서 JS가 해당 RESTAPI url로
 	// 요청 바디에 데이터를 실어서 해당 요청 바디에 대한 서버의 응답 데이터를 요청하고
 	// 그 응답 데이터를 받아와서 비교해서 그다음을 동작 시킨다!
-
+	/*  공구상품 글 등록 */
 	@PostMapping("upload")
 	public String regStuff(@RequestBody MultipartFile[] imgs,
 			MultipartHttpServletRequest request,
@@ -203,4 +204,10 @@ public class StuffController {
 			
 		}
 
+		@DeleteMapping("{id}")
+			public String deleteStuff(
+				@PathVariable("id") Long id){
+					service.deleteStuff(id);
+			return "menu del:";      
+   		}
 }

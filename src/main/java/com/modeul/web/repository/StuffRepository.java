@@ -45,8 +45,10 @@ public interface StuffRepository {
 	/* 공구상품 수정 */
 	int update(Stuff stuff);	
 	
-	/* 공구상품 정보 삭제 */
+	/* 특정 공구상품의 이미지만 삭제 */
 	int deleteImage(Long stuffId);
 	
+	/* 특정 공구상품 정보 삭제 */
+	void delete(Long id);
 
 }

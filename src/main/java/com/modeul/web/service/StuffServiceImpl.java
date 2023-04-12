@@ -117,5 +117,11 @@ public class StuffServiceImpl implements StuffService {
 		}
 		return updateCount;
 	}
-	
+
+	/* 공구상품 정보 삭제 */
+	@Override
+   	public void deleteStuff(Long id) {
+    	repository.delete(id);
+   	}
+
 }
