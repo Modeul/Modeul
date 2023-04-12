@@ -76,11 +76,16 @@ public class StuffController {
 		Stuff stuff = service.getById(id);
 		Category category = categoryService.getById(stuff.getCategoryId());
 		Image image = imageService.getbyId(stuff.getId());
+		// List<Image> imageList = imageService.getList();
+		System.out.println("id:" + stuff.getId());
+		List<Image> imageList = imageService.getListById(stuff.getId());
 
 		Map<String, Object> data = new HashMap<>();
-		data.put("stuff", stuff);
-		data.put("image", image);
-		data.put("category", category);
+		data.put("stuff",stuff);
+		data.put("image",image);
+		data.put("category",category);
+		data.put("imageList",imageList);
+		// System.out.println(imageList);
 
 		return data;
 	}
