@@ -76,17 +76,13 @@ public class StuffController {
 
 		Stuff stuff = service.getById(id);
 		Category category = categoryService.getById(stuff.getCategoryId());
-		// Image image = imageService.getbyId(stuff.getId());
-		// List<Image> imageList = imageService.getList();
 		System.out.println("id:" + stuff.getId());
 		List<Image> imageList = imageService.getListById(stuff.getId());
 
 		Map<String, Object> data = new HashMap<>();
 		data.put("stuff",stuff);
-		// data.put("image",image);
 		data.put("category",category);
 		data.put("imageList",imageList);
-		// System.out.println(imageList);
 
 		return data;
 	}
@@ -173,7 +169,9 @@ public class StuffController {
 		@RequestParam(name = "content") String content) throws IllegalStateException, IOException {
 
 			List<Image> imageList = new ArrayList<Image>(); 		// 파일 여러 개 받기	
-				
+			
+		/* 수정시 이미지 처리 무시 -> 1차 이후 활용 */
+		/*
 			for (int i = 0; i < imgs.length; i++) {			
 				MultipartFile img = imgs[i]; 			// 파일 업로드가 안될 시, 예외 처리		
 
@@ -185,7 +183,9 @@ public class StuffController {
 				
 				System.out.printf("%s", realPath); 			// 물리 경로에 폴더가 없으면, 폴더도 생성			
 				File savePath = new File(realPath); 			
-			
+		
+				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~1차까지 주석처리~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 				if (!savePath.exists())				
 					savePath.mkdirs(); 			// 그 물리적 경로로 파일 저장하는 방법**			
 			
@@ -197,7 +197,7 @@ public class StuffController {
 				image.setName(img.getOriginalFilename()); 			// ArrayList에 add해서 Image 정보 넣기!			
 				imageList.add(image);		
 			} 		
-	
+	 */
 			Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, imageList, categoryId, id);		
 			stuff.setImageList(imageList); 		
 			System.out.println(stuff);		
