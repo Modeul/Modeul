@@ -44,17 +44,20 @@ public class StuffController {
 	// 반환 타입 주의!
 	@GetMapping
 	public Map<String,Object> getList(
+			@RequestParam(name="q", required=false) String query,
 			@RequestParam(name="p", defaultValue = "1") int page,		
 			@RequestParam(name="c", required=false) Long categoryId
 			){
 		
 //		List<StuffView> list = service.getViewAll(categoryId, page);
 		// 3중 조인 필수..
+		List<StuffView> queryList = service.getRecentViewList(query,categoryId,page );
 		List<StuffView> list = service.getRecentViewList(categoryId, page);
 		List<Category> categoryList = categoryService.getList();
 		Long listCount = service.getListCount(categoryId, page);
 		
 		Map<String, Object> dataList = new HashMap<>();
+		dataList.put("queryList" , queryList);
 		dataList.put("list", list);
 		dataList.put("categoryList", categoryList);
 		dataList.put("listCount", listCount);
@@ -62,13 +65,13 @@ public class StuffController {
 		return dataList;
 	}
 
-	// @GetMapping("categories")
-	// public List<Category> getCategoryList(){
+	@GetMapping("categories")
+	public List<Category> getCategoryList(){
 		
-	// 	List<Category> categoryList = categoryService.getList();
+		List<Category> categoryList = categoryService.getList();
 		
-	// 	return categoryList;
-	// }
+		return categoryList;
+	}
 
 	@GetMapping("{id}")
 	public Map<String, Object> get(
