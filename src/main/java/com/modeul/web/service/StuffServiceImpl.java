@@ -99,6 +99,12 @@ public class StuffServiceImpl implements StuffService {
 		return result;
 	}
 
+	@Override
+	public List<StuffView> getRecentViewList(String query, Long categoryId, int page) {
+			int size = page * 7;
+		return repository.findViewAll(query, categoryId, "reg_date", "desc", size, 0);
+	}
+
 
 	/* 공구상품 정보 수정 */
 	@Transactional
