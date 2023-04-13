@@ -25,8 +25,8 @@ public interface StuffService {
 	Long getListCount(Long categoryId, int page);
 
 
+	int editStuff(Stuff stuff);
 
-
-	
+	void deleteStuff(Long id);
 
 }
