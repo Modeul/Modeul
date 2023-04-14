@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -99,64 +100,68 @@ public class StuffController {
 	/*  공구상품 글 등록 */
 	@PostMapping("upload")
 	public String regStuff(@RequestBody MultipartFile[] imgs,
-			MultipartHttpServletRequest request,
-			@RequestParam(name = "title") String title,
-			@RequestParam(name = "place") String place,
-			@RequestParam(name = "numPeople") String numPeople, 
-			@RequestParam(name = "categoryId") Long categoryId,
-			@RequestParam(name = "deadline") LocalDateTime deadline,
-			@RequestParam(name = "price") String price,
-			@RequestParam(name = "url") String url,
-			@RequestParam(name = "content") String content)
-			throws IllegalStateException, IOException {
-
-		// System.out.printf("title: %s, place: %s, numPeople :%s, categoryId: %s,date:
-		// %s, price: %s, url: %s, content: %s\n",
-		// title, place, numPeople, categoryId, deadline, price, url, content);
-
-		List<Image> imageList = new ArrayList<Image>();
-
-		// 파일 여러 개 받기
-		for (int i = 0; i < imgs.length; i++) {
-			MultipartFile img = imgs[i];
-
-			// 파일 업로드가 안될 시, 예외 처리
-			if (img.isEmpty())
-				continue;
-
-			// 파일 경로 알아 내기(논리적, 물리적)** : urlPath, realPath
-			String urlPath = "/images/member/stuff/" + img.getOriginalFilename();
-			String realPath = request.getServletContext().getRealPath(urlPath);
-
-			System.out.printf("%s", realPath);
-
-			// 물리 경로에 폴더가 없으면, 폴더도 생성
-			File savePath = new File(realPath);
-
-			if (!savePath.exists())
-				savePath.mkdirs();
-
-			// 그 물리적 경로로 파일 저장하는 방법**
-			img.transferTo(new File(realPath));
-			System.out.printf("%s", realPath);
-
-			// 그 이미지를 DB에 저장하기!!**
-			Image image = new Image();
-			image.setName(img.getOriginalFilename());
-
-			// ArrayList에 add해서 Image 정보 넣기!
-			imageList.add(image);
-		}
-
-		Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, categoryId, imageList);
-		stuff.setImageList(imageList);
-
-		System.out.println(stuff);
-		service.regStuff(stuff);
-
-		return "ok";
+		  MultipartHttpServletRequest request,
+		  @RequestParam(name = "title") String title,
+		  @RequestParam(name = "place") String place,
+		  @RequestParam(name = "numPeople") String numPeople, 
+		  @RequestParam(name = "categoryId") Long categoryId,
+		  @RequestParam(name = "deadline") LocalDateTime deadline,
+		  @RequestParam(name = "price") String price,
+		  @RequestParam(name = "url") String url,
+		  @RequestParam(name = "content") String content)
+		  throws IllegalStateException, IOException {
+ 
+	   // System.out.printf("title: %s, place: %s, numPeople :%s, categoryId: %s,date:
+	   // %s, price: %s, url: %s, content: %s\n",
+	   // title, place, numPeople, categoryId, deadline, price, url, content);
+ 
+	   List<Image> imageList = new ArrayList<Image>();
+ 
+	   // 파일 여러 개 받기
+	   for (int i = 0; i < imgs.length; i++) {
+		  MultipartFile img = imgs[i];
+ 
+		  // 파일 업로드가 안될 시, 예외 처리
+		  if (img.isEmpty())
+			 continue;
+ 
+		  // 파일 경로 알아 내기(논리적, 물리적)** : urlPath, realPath
+		  String currentDir = System.getProperty("user.dir");
+		  
+		  String realPath = "VuePrj_Modeul/public/images/member/stuff";
+		  
+		  // uuid 추가
+		  String uuid = UUID.randomUUID().toString();
+		  
+		  String uploadFileName = img.getOriginalFilename();
+		  
+		  uploadFileName = uuid + "_" + uploadFileName;
+		  
+		  // 물리 경로에 폴더가 없으면, 폴더도 생성
+		  File savePath = new File(currentDir, realPath);
+ 
+		  if (!savePath.exists())
+			 savePath.mkdirs();
+ 
+		  // 그 물리적 경로로 파일 저장하는 방법**
+		  img.transferTo(new File(savePath, uploadFileName));
+ 
+		  // 그 이미지를 DB에 저장하기!!**
+		  Image image = new Image();
+		  image.setName(uploadFileName);
+ 
+		  // ArrayList에 add해서 Image 정보 넣기!
+		  imageList.add(image);
+	   }
+ 
+	   Stuff stuff = new Stuff(title, place, numPeople, deadline, price, url, content, categoryId, imageList);
+	   stuff.setImageList(imageList);
+ 
+	   service.regStuff(stuff);
+ 
+	   return "ok";
 	}
-
+	
 	/* 공구상품 정보 수정 */
 	@PutMapping("update/{id}")
 	public String editStuff(
